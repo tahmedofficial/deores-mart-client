@@ -10,7 +10,7 @@ export default {
         "montserrat": "'Montserrat', sans-serif"
       },
       colors: {
-        "primary_text_color": "#000000",
+        "primary_color": "#1F313F",
         "primary_bg_color": "#f2f2f2",
         "primary_card_color": "#f8f8f8",
       }
