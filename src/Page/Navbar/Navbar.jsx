@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 
 const Navbar = () => {
+
+    const { user } = useAuth();
 
     const navItems = <>
         <li><NavLink to="/" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-black font-medium px-3 pb-2 border-black" : "font-medium"}>Home</NavLink></li>
@@ -32,8 +35,8 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end gap-3">
                     <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar tooltip">
-                            <img className="w-full h-full rounded-full" src="" alt="Profile" />
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-primary_color avatar tooltip">
+                            <img className="w-full h-full rounded-full" src={user?.photoURL} alt="Profile" />
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
 
