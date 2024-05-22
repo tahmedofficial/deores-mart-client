@@ -1,5 +1,6 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import profileIcon from "../../assets/images/profileIcon.jpg";
 
 
 const Navbar = () => {
@@ -36,10 +37,15 @@ const Navbar = () => {
                 <div className="navbar-end gap-3">
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-primary_color avatar tooltip">
-                            <img className="w-full h-full rounded-full" src={user?.photoURL} alt="Profile" />
+                            <img className="w-full h-full rounded-full" src={user ? user?.photoURL : profileIcon} alt="Profile" />
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-
+                        <ul tabIndex={0} className="dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            {
+                                user ? <li className="btn btn-sm bg-black text-white w-full hover:bg-primary_color duration-300"><Link to="profile">Profile</Link></li> :
+                                    <Link to="login">
+                                        <li className="btn btn-sm bg-black text-white w-full hover:bg-primary_color duration-300"><Link to="profile">Login</Link></li>
+                                    </Link>
+                            }
                         </ul>
                     </div>
                 </div>
