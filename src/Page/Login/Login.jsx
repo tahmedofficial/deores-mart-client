@@ -74,7 +74,7 @@ const Login = () => {
                             }
                         </div>
                     </div>
-                    <button className="btn bg-black text-white text-lg">Login</button>
+                    <button className="btn bg-black text-white text-lg hover:bg-primary_color">Login</button>
                     <div className="flex items-center font-medium mx-auto">
                         <h3>Do not have account?</h3>
                         <Link to="/signUp">

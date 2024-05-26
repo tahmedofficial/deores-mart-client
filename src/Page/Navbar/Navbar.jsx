@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import profileIcon from "../../assets/images/profileIcon.jpg";
+import { FaCartShopping } from "react-icons/fa6";
 
 
 const Navbar = () => {
@@ -35,15 +36,21 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end gap-3">
+                    <div>
+                        <button className="btn btn-circle text-xl mr-3 text-rose-600"><FaCartShopping /></button>
+                    </div>
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-primary_color avatar tooltip">
                             <img className="w-full h-full rounded-full" src={user ? user?.photoURL : profileIcon} alt="Profile" />
                         </div>
                         <ul tabIndex={0} className="dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             {
-                                user ? <li className="btn btn-sm bg-black text-white w-full hover:bg-primary_color duration-300"><Link to="profile">Profile</Link></li> :
+                                user ?
+                                    <Link to="dashboard/profile">
+                                        <li className="btn btn-sm bg-black text-white w-full hover:bg-primary_color duration-300">Profile</li>
+                                    </Link> :
                                     <Link to="login">
-                                        <li className="btn btn-sm bg-black text-white w-full hover:bg-primary_color duration-300"><Link to="profile">Login</Link></li>
+                                        <li className="btn btn-sm bg-black text-white w-full hover:bg-primary_color duration-300">Login</li>
                                     </Link>
                             }
                         </ul>

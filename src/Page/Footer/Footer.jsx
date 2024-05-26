@@ -47,19 +47,19 @@ const Footer = () => {
                     <h1 className="text-xl font-semibold text-white mt-5">Follow us on</h1>
                     <div className="flex gap-4 text-xl text-white">
                         <Link to="https://www.facebook.com/deoresbd">
-                            <div className="btn btn-circle bg-white text-black text-2xl hover:bg-primary_color hover:text-white duration-300">
+                            <div className="border border-white hover:text-rose-500 hover:border-rose-500 duration-300 rounded-full p-2">
                                 <FaFacebookF />
                             </div>
                         </Link>
-                        <div className="btn btn-circle bg-white text-black text-2xl hover:bg-primary_color hover:text-white duration-300">
+                        <div className="border border-white hover:text-rose-500 hover:border-rose-500 duration-300 rounded-full p-2">
                             <FaTwitter />
                         </div>
                         <Link to="">
-                            <div className="btn btn-circle bg-white text-black text-2xl hover:bg-primary_color hover:text-white duration-300">
+                            <div className="border border-white hover:text-rose-500 hover:border-rose-500 duration-300 rounded-full p-2">
                                 <FaInstagram />
                             </div>
                         </Link>
-                        <div className="btn btn-circle bg-white text-black text-2xl hover:bg-primary_color hover:text-white duration-300">
+                        <div className="border border-white hover:text-rose-500 hover:border-rose-500 duration-300 rounded-full p-2">
                             <FaLinkedin />
                         </div>
                     </div>
