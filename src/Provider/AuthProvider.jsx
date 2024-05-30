@@ -1,8 +1,9 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import PropTypes from 'prop-types';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config"
 import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 
 export const AuthContext = createContext(null);
 
@@ -10,6 +11,19 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const errorMessage = (message) => {
+        toast.error(message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    }
 
     const sweetMessage = (message) => {
         Swal.fire({
@@ -31,7 +45,19 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
 
-    const signOutUser = () => {
+    const googleProvider = new GoogleAuthProvider();
+    const loginUsingGoogle = () => {
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider);
+    }
+
+    const facebookProvider = new FacebookAuthProvider();
+    const loginUsingFacebook = () => {
+        setLoading(true);
+        return signInWithPopup(auth, facebookProvider);
+    }
+
+    const logOutUser = () => {
         setLoading(true);
         return signOut(auth);
     }
@@ -51,9 +77,12 @@ const AuthProvider = ({ children }) => {
         loading,
         signUpUser,
         loginUser,
+        loginUsingGoogle,
+        loginUsingFacebook,
         setUser,
-        signOutUser,
-        sweetMessage
+        logOutUser,
+        sweetMessage,
+        errorMessage
     }
 
     return (

@@ -1,7 +1,8 @@
-import { FaEye, FaEyeSlash, FaFacebookF, FaGoogle } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { useState } from "react";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Login = () => {
 
@@ -25,34 +26,6 @@ const Login = () => {
                     // errorMessage("Enter a valid email and password")
                 }
             })
-    }
-
-    const handleGoogleLogin = () => {
-        // loginWithGoogle()
-        //     .then(() => {
-        //         toastMessage("Logged in successfully")
-        //         navigate(location?.state ? location.state : "/")
-        //     }
-        //     )
-        //     .catch(error => {
-        //         if (error.code === "auth/account-exists-with-different-credential") {
-        //             errorMessage("Email address already exists")
-        //         }
-        //     })
-    }
-
-    const handleFacebookLogin = () => {
-        // loginWithFacebook()
-        //     .then(() => {
-        //         toastMessage("Logged in successfully")
-        //         navigate(location?.state ? location.state : "/")
-        //     }
-        //     )
-        //     .catch(error => {
-        //         if (error.code === "auth/account-exists-with-different-credential") {
-        //             errorMessage("Email address already exists")
-        //         }
-        //     })
     }
 
     return (
@@ -82,9 +55,8 @@ const Login = () => {
                         </Link>
                     </div>
                 </form>
-                <div className="flex flex-col md:flex-row gap-3 justify-center mt-5">
-                    <button onClick={handleGoogleLogin} className="btn rounded-none bg-black text-white"> <FaGoogle className="text-2xl" />Login With Google</button>
-                    <button onClick={handleFacebookLogin} className="btn rounded-none bg-black text-white"><FaFacebookF className="text-2xl" />Login With Facebook</button>
+                <div>
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>
