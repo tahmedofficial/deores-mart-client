@@ -5,43 +5,49 @@ import { updateProfile } from "firebase/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const SignUp = () => {
 
-    const { signUpUser, setUser, sweetMessage } = useAuth()
+    const { signUpUser, setUser, sweetMessage, errorMessage } = useAuth()
     const { register, handleSubmit, formState: { errors }, } = useForm();
     const [showPass, setShowPass] = useState(true);
     const [showConfirmPass, setShowConfirmPass] = useState(true);
     const [password, setPassword] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
     const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
 
     const onSubmit = (data) => {
-        console.log(data);
         const { name, email, password, confirmPass } = data;
         setPassword(password);
         setConfirmPass(confirmPass);
 
         if (password === confirmPass) {
             signUpUser(email, password)
-                .then(res => {
-                    updateProfile(res.user, {
+                .then(data => {
+                    updateProfile(data.user, {
                         displayName: name,
-                        // photoURL: photo,
                     })
                         .then(() => {
-                            setUser({
-                                displayName: name,
-                                // photoURL: photo,
-                            })
-                            sweetMessage("You have successfully signed up")
-                            navigate("/")
-
+                            const user = {
+                                name: data?.user?.displayName,
+                                number: data?.user?.phoneNumber,
+                                email: data?.user?.email,
+                            }
+                            axiosSecure.post("/users", user)
+                                .then(() => {
+                                    setUser({ displayName: name })
+                                    sweetMessage("You have successfully signed up")
+                                    navigate("/")
+                                })
                         })
                         .catch(() => { undefined })
                 })
                 .catch(error => {
-                    console.log(error);
+                    if (error.code === "auth/email-already-in-use") {
+                        errorMessage("Email address already in use")
+                    }
                 })
         }
 
@@ -59,21 +65,11 @@ const SignUp = () => {
                         <input {...register("name", { required: true })} className="h-10 w-full outline-none pl-3 rounded-lg" type="text" placeholder="Enter Your Name" />
                         {errors.name && <span className="text-red-600">This field is required</span>}
                     </div>
-                    {/* <div>
-                    <h3 className="mb-2 font-medium text-black">Phone Number</h3>
-                    <input {...register("number", { required: true })} className="h-10 w-full outline-none pl-3 rounded-lg" type="number" placeholder="Enter Your Phone Number" />
-                    {errors.number && <span className="text-red-600">This field is required</span>}
-                </div> */}
                     <div>
                         <h3 className="mb-2 font-medium text-black">Email</h3>
                         <input {...register("email", { required: true })} className="h-10 w-full outline-none pl-3 rounded-lg" type="email" placeholder="Enter Your Email" />
                         {errors.email && <span className="text-red-600">This field is required</span>}
                     </div>
-                    {/* <div>
-                    <h3 className="mb-2 font-medium text-black">Photo</h3>
-                    <input {...register("photo", { required: true })} className="h-10 w-full outline-none pl-3 rounded-lg" type="text" placeholder="Enter Your Photo Url" />
-                    {errors.photo && <span className="text-red-600">This field is required</span>}
-                </div> */}
                     <div>
                         <h3 className="mb-2 font-medium text-black">Password</h3>
                         <div className="relative">

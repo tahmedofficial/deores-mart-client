@@ -5,7 +5,7 @@ import Home from "../Page/Home/Home";
 import AllProducts from "../Page/AllProducts/AllProducts";
 import Login from "../Page/Login/Login";
 import SignUp from "../Page/SignUp/SignUp";
-import Profile from "../Page/Profile/Profile";
+import Profile from "../Page/Dashboard/Profile/Profile";
 import AllUsers from "../Page/Dashboard/AllUsers/AllUsers";
 import AddItem from "../Page/Dashboard/AddItem/AddItem";
 import Cart from "../Page/Cart/Cart";

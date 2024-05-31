@@ -1,18 +1,27 @@
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
 
     const { loginUsingGoogle, sweetMessage, errorMessage } = useAuth();
+    const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
     const handleGoogleLogin = () => {
         loginUsingGoogle()
             .then(data => {
-                sweetMessage("Logged in successfully")
-                console.log(data.user);
-                navigate(location?.state ? location.state : "/")
+                const user = {
+                    name: data?.user?.displayName,
+                    number: data?.user?.phoneNumber,
+                    email: data?.user?.email,
+                }
+                axiosSecure.post("/users", user)
+                    .then(() => {
+                        sweetMessage("Logged in successfully")
+                        navigate(location?.state ? location.state : "/")
+                    })
             }
             )
             .catch(error => {
