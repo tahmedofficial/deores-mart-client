@@ -37,7 +37,7 @@ const SignUp = () => {
                             }
                             axiosSecure.post("/users", user)
                                 .then(() => {
-                                    setUser({ displayName: name })
+                                    setUser({ displayName: name, email: email });
                                     sweetMessage("You have successfully signed up")
                                     navigate("/")
                                 })

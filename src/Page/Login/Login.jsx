@@ -6,7 +6,7 @@ import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Login = () => {
 
-    const { loginUser } = useAuth();
+    const { setUser, loginUser, errorMessage } = useAuth();
     const [showPass, setShowPass] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
@@ -17,13 +17,18 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         loginUser(email, password)
-            .then(() => {
+            .then(data => {
+                setUser({
+                    email: data?.user?.email,
+                    displayName: data?.user?.displayName,
+                    photoURL: data?.user?.photoURL
+                });
                 // toastMessage("Logged in successfully")
                 navigate(location?.state ? location.state : "/")
             })
             .catch(error => {
                 if (error) {
-                    // errorMessage("Enter a valid email and password")
+                    errorMessage("Enter a valid email and password");
                 }
             })
     }

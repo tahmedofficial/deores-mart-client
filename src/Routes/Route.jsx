@@ -9,6 +9,7 @@ import Profile from "../Page/Dashboard/Profile/Profile";
 import AllUsers from "../Page/Dashboard/AllUsers/AllUsers";
 import AddItem from "../Page/Dashboard/AddItem/AddItem";
 import Cart from "../Page/Cart/Cart";
+import UserProfile from "../Page/UserProfile/UserProfile";
 
 
 const router = createBrowserRouter([
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>
+            },
+            {
+                path: "/userProfile",
+                element: <UserProfile></UserProfile>
             },
             {
                 path: "/allProducts",
@@ -35,7 +40,7 @@ const router = createBrowserRouter([
             {
                 path: "/signUp",
                 element: <SignUp></SignUp>
-            },
+            }
         ]
     },
     {

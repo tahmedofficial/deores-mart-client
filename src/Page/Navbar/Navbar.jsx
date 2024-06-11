@@ -1,7 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import profileIcon from "../../assets/images/profileIcon.jpg";
-import { FaCartShopping } from "react-icons/fa6";
+import { BsCart3 } from "react-icons/bs";
+import { RiMenu2Fill } from "react-icons/ri";
 
 
 const Navbar = () => {
@@ -20,28 +21,33 @@ const Navbar = () => {
             <div className="navbar md:w-5/6 mx-auto px-3">
                 <div className="navbar-start">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost text-black lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                        <div tabIndex={0} role="button" className="btn btn-ghost text-black">
+                            <RiMenu2Fill className="h-5 w-5" />
                         </div>
-                        <ul tabIndex={0} className="flex flex-col bg-white text-primary_text_color gap-3 dropdown-content mt-3 z-[1] p-6 shadow rounded-box w-52">
+                        <ul tabIndex={0} className="flex flex-col z-10 bg-primary_bg_color text-black gap-3 dropdown-content mt-3 p-6 shadow rounded-box w-52">
                             {navItems}
                         </ul>
                     </div>
-                    <button className="font-semibold text-black text-4xl hidden lg:block">Deores</button>
                 </div>
-                <button className="font-semibold text-black text-4xl lg:hidden">Deores</button>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="flex gap-6 text-primary_text_color text-[17px]">
-                        {navItems}
-                    </ul>
-                </div>
+                <button className="btn btn-ghost font-semibold text-black text-4xl">Deores</button>
                 <div className="navbar-end gap-3">
-                    <Link to="/cart">
-                        <div className="relative">
-                            <button className="btn btn-circle text-xl mr-3 text-rose-600"><FaCartShopping /></button>
-                            <h1 className="bg-rose-600 rounded-full absolute px-2 text-white top-7 right-3">0</h1>
+                    <div className="dropdown dropdown-end z-30">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+                            <div className="indicator">
+                                <BsCart3 className="h-5 w-5" />
+                                <span className="badge badge-sm indicator-item bg-rose-500 text-white">8</span>
+                            </div>
                         </div>
-                    </Link>
+                        <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
+                            <div className="card-body">
+                                <span className="font-bold text-lg">8 Items</span>
+                                <span className="text-info">Subtotal: $999</span>
+                                <div className="card-actions">
+                                    <button className="btn btn-sm btn-block bg-black text-white">View cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {
                         user ?
                             <Link to="dashboard/profile">

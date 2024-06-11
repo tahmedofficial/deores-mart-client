@@ -5,13 +5,18 @@ import { useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
 
-    const { loginUsingGoogle, sweetMessage, errorMessage } = useAuth();
+    const { setUser, loginUsingGoogle, sweetMessage, errorMessage } = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
     const handleGoogleLogin = () => {
         loginUsingGoogle()
             .then(data => {
+                setUser({
+                    email: data?.user?.email,
+                    displayName: data?.user?.displayName,
+                    photoURL: data?.user?.photoURL
+                })
                 const user = {
                     name: data?.user?.displayName,
                     number: data?.user?.phoneNumber,
