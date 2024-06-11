@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
         });
     }
 
-    const sweetMessage = (message) => {
+    const successMessage = (message) => {
         Swal.fire({
             position: "center",
             icon: "success",
@@ -81,7 +81,7 @@ const AuthProvider = ({ children }) => {
         loginUsingFacebook,
         setUser,
         logOutUser,
-        sweetMessage,
+        successMessage,
         errorMessage
     }
 

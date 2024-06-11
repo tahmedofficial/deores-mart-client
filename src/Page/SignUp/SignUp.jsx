@@ -9,7 +9,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const SignUp = () => {
 
-    const { signUpUser, setUser, sweetMessage, errorMessage } = useAuth()
+    const { signUpUser, setUser, successMessage, errorMessage } = useAuth()
     const { register, handleSubmit, formState: { errors }, } = useForm();
     const [showPass, setShowPass] = useState(true);
     const [showConfirmPass, setShowConfirmPass] = useState(true);
@@ -34,11 +34,12 @@ const SignUp = () => {
                                 name: data?.user?.displayName,
                                 number: data?.user?.phoneNumber,
                                 email: data?.user?.email,
+                                role: "supporter"
                             }
                             axiosSecure.post("/users", user)
                                 .then(() => {
                                     setUser({ displayName: name, email: email });
-                                    sweetMessage("You have successfully signed up")
+                                    successMessage("You have successfully signed up")
                                     navigate("/")
                                 })
                         })

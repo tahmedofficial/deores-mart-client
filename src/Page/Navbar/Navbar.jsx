@@ -3,11 +3,13 @@ import useAuth from "../../Hooks/useAuth";
 import profileIcon from "../../assets/images/profileIcon.jpg";
 import { BsCart3 } from "react-icons/bs";
 import { RiMenu2Fill } from "react-icons/ri";
+import useAdmin from "../../Hooks/useAdmin";
 
 
 const Navbar = () => {
 
     const { user } = useAuth();
+    const [isAdmin] = useAdmin();
 
     const navItems = <>
         <li><NavLink to="/" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-black font-medium px-3 pb-2 border-black" : "font-medium"}>Home</NavLink></li>
@@ -50,12 +52,21 @@ const Navbar = () => {
                     </div>
                     {
                         user ?
-                            <Link to="dashboard/profile">
-                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-primary_color avatar tooltip">
-                                    <img className="w-full h-full rounded-full" src={user ? user?.photoURL : profileIcon} alt="Profile" />
-                                </div>
-                            </Link> :
-                            <Link to="login">
+                            <>
+                                {
+                                    isAdmin ? <Link to="dashboard/profile">
+                                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-primary_color avatar tooltip">
+                                            <img className="w-full h-full rounded-full" src={user ? user?.photoURL : profileIcon} alt="Profile" />
+                                        </div>
+                                    </Link> :
+                                        <Link to="/userProfile">
+                                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-primary_color avatar tooltip">
+                                                <img className="w-full h-full rounded-full" src={user ? user?.photoURL : profileIcon} alt="Profile" />
+                                            </div>
+                                        </Link>
+                                }
+                            </>
+                            : <Link to="/login">
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-primary_color avatar tooltip">
                                     <img className="w-full h-full rounded-full" src={user ? user?.photoURL : profileIcon} alt="Profile" />
                                 </div>

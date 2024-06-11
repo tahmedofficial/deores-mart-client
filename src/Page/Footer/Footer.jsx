@@ -40,7 +40,7 @@ const Footer = () => {
                     <h1 className="font-semibold text-xl text-white">Newsletter</h1>
                     <div className="join w-full">
                         <input className="join-item outline-none px-2 bg-white w-full md:w-2/3" type="text" placeholder="username@site.com" />
-                        <button className="join-item btn bg-rose-600 text-white text-lg border-0">
+                        <button className="join-item btn bg-rose-600 text-white text-lg border-0 hover:bg-black duration-300">
                             <FaArrowRightLong />
                         </button>
                     </div>

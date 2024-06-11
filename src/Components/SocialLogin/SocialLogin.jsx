@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
 
-    const { setUser, loginUsingGoogle, sweetMessage, errorMessage } = useAuth();
+    const { setUser, loginUsingGoogle, successMessage, errorMessage } = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
@@ -21,10 +21,12 @@ const SocialLogin = () => {
                     name: data?.user?.displayName,
                     number: data?.user?.phoneNumber,
                     email: data?.user?.email,
+                    image: data?.user?.photoURL,
+                    role: "supporter"
                 }
                 axiosSecure.post("/users", user)
                     .then(() => {
-                        sweetMessage("Logged in successfully")
+                        successMessage("Logged in successfully")
                         navigate(location?.state ? location.state : "/")
                     })
             }
