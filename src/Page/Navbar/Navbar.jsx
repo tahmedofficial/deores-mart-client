@@ -56,19 +56,19 @@ const Navbar = () => {
                                 {
                                     isAdmin ? <Link to="dashboard/profile">
                                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-primary_color avatar tooltip">
-                                            <img className="w-full h-full rounded-full" src={user ? user?.photoURL : profileIcon} alt="Profile" />
+                                            <img className="w-full h-full rounded-full" src={user?.photoURL ? user?.photoURL : profileIcon} alt="Profile" />
                                         </div>
                                     </Link> :
                                         <Link to="/userProfile">
                                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-primary_color avatar tooltip">
-                                                <img className="w-full h-full rounded-full" src={user ? user?.photoURL : profileIcon} alt="Profile" />
+                                                <img className="w-full h-full rounded-full" src={user?.photoURL ? user?.photoURL : profileIcon} alt="Profile" />
                                             </div>
                                         </Link>
                                 }
                             </>
                             : <Link to="/login">
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-primary_color avatar tooltip">
-                                    <img className="w-full h-full rounded-full" src={user ? user?.photoURL : profileIcon} alt="Profile" />
+                                    <img className="w-full h-full rounded-full" src={user?.photoURL ? user?.photoURL : profileIcon} alt="Profile" />
                                 </div>
                             </Link>
                     }

@@ -9,7 +9,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const SignUp = () => {
 
-    const { signUpUser, setUser, successMessage, errorMessage } = useAuth()
+    const { signUpUser, emailVerification, logOutUser, alartMessage, errorMessage } = useAuth()
     const { register, handleSubmit, formState: { errors }, } = useForm();
     const [showPass, setShowPass] = useState(true);
     const [showConfirmPass, setShowConfirmPass] = useState(true);
@@ -38,9 +38,14 @@ const SignUp = () => {
                             }
                             axiosSecure.post("/users", user)
                                 .then(() => {
-                                    setUser({ displayName: name, email: email });
-                                    successMessage("You have successfully signed up")
-                                    navigate("/")
+                                    emailVerification()
+                                        .then(() => {
+                                            logOutUser()
+                                                .then(() => {
+                                                    navigate("/login")
+                                                    alartMessage("We send a email please verify")
+                                                })
+                                        })
                                 })
                         })
                         .catch(() => { undefined })

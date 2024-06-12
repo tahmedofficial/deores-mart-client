@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import profileIcon from "../../../assets/images/profileIcon.jpg";
 import { FaEdit } from "react-icons/fa";
 
 const AllUsers = () => {
@@ -37,7 +38,7 @@ const AllUsers = () => {
                                     <td>
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
-                                                <img src={user.image} alt="profile" />
+                                                <img src={user.image || profileIcon} alt="profile" />
                                             </div>
                                         </div>
                                     </td>

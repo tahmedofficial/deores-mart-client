@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, signOut, sendEmailVerification } from 'firebase/auth';
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config"
 import Swal from 'sweetalert2';
@@ -35,6 +35,14 @@ const AuthProvider = ({ children }) => {
         });
     }
 
+    const alartMessage = (message) => {
+        Swal.fire({
+            title: message,
+            // text: "Your file has been deleted.",
+            icon: "success"
+        });
+    }
+
     const signUpUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
@@ -62,6 +70,11 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
+    const emailVerification = () => {
+        setLoading(true);
+        return sendEmailVerification(auth.currentUser);
+    }
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
@@ -70,7 +83,7 @@ const AuthProvider = ({ children }) => {
         return () => {
             unsubscribe();
         }
-    }, [])
+    }, [user])
 
     const authInfo = {
         user,
@@ -80,8 +93,10 @@ const AuthProvider = ({ children }) => {
         loginUsingGoogle,
         loginUsingFacebook,
         setUser,
+        emailVerification,
         logOutUser,
         successMessage,
+        alartMessage,
         errorMessage
     }
 
