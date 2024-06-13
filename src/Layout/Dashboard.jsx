@@ -8,7 +8,7 @@ import { IoHomeSharp } from "react-icons/io5";
 
 const Dashboard = () => {
 
-    const [isOpen, setOpen] = useState(true);
+    const [isOpen, setOpen] = useState(false);
 
     return (
         <div className="flex gap-3 px-2 font-montserrat">

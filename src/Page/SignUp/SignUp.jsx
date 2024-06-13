@@ -6,6 +6,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import WaitMadal from "../../Components/WaitMadal/WaitMadal";
 
 const SignUp = () => {
 
@@ -15,6 +16,7 @@ const SignUp = () => {
     const [showConfirmPass, setShowConfirmPass] = useState(true);
     const [password, setPassword] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
+    const [isCreating, setCreating] = useState(false);
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
 
@@ -22,6 +24,7 @@ const SignUp = () => {
         const { name, email, password, confirmPass } = data;
         setPassword(password);
         setConfirmPass(confirmPass);
+        setCreating(true);
 
         if (password === confirmPass) {
             signUpUser(email, password)
@@ -42,8 +45,9 @@ const SignUp = () => {
                                         .then(() => {
                                             logOutUser()
                                                 .then(() => {
-                                                    navigate("/login")
-                                                    alartMessage("We send a email please verify")
+                                                    setCreating(false);
+                                                    navigate("/login");
+                                                    alartMessage("We send a email please verify");
                                                 })
                                         })
                                 })
@@ -51,10 +55,14 @@ const SignUp = () => {
                         .catch(() => { undefined })
                 })
                 .catch(error => {
+                    setCreating(false);
                     if (error.code === "auth/email-already-in-use") {
                         errorMessage("Email address already in use")
                     }
                 })
+        }
+        else {
+            setCreating(false);
         }
 
     }
@@ -110,6 +118,11 @@ const SignUp = () => {
                 <div>
                     <SocialLogin></SocialLogin>
                 </div>
+            </div>
+            <div>
+                {
+                    isCreating ? <WaitMadal massege="Please Wait"></WaitMadal> : undefined
+                }
             </div>
         </div>
     );

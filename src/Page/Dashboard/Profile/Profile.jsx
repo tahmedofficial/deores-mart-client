@@ -3,7 +3,7 @@ import useAuth from "../../../Hooks/useAuth";
 import profileIcon from "../../../assets/images/profileIcon.jpg";
 import { useNavigate } from "react-router-dom";
 import Address from "../../../Components/Address/Address";
-import MyOrders from "./MyOrders/MyOrders";
+import MyOrders from "../../../Components/MyOrders/MyOrders";
 import { useState } from "react";
 import UpdateProfileModal from "./UpdateProfileModal";
 import { useQuery } from "@tanstack/react-query";
