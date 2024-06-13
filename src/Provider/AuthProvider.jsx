@@ -38,7 +38,6 @@ const AuthProvider = ({ children }) => {
     const alartMessage = (message) => {
         Swal.fire({
             title: message,
-            // text: "Your file has been deleted.",
             icon: "success"
         });
     }
