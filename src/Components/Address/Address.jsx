@@ -1,8 +1,8 @@
 import { useState } from "react";
 import AddressModal from "./AddressModal";
-import useAuth from "../../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Address = () => {
 

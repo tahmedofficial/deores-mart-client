@@ -11,7 +11,7 @@ const Dashboard = () => {
     const [isOpen, setOpen] = useState(true);
 
     return (
-        <div className="flex gap-3 px-2">
+        <div className="flex gap-3 px-2 font-montserrat">
             <div>
                 <Hamburger toggled={isOpen} toggle={setOpen} />
                 {isOpen ? <AdminDashboard></AdminDashboard> :

@@ -65,14 +65,14 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, facebookProvider);
     }
 
-    const logOutUser = () => {
-        setLoading(true);
-        return signOut(auth);
-    }
-
     const emailVerification = () => {
         setLoading(true);
         return sendEmailVerification(auth.currentUser);
+    }
+
+    const logOutUser = () => {
+        setLoading(true);
+        return signOut(auth);
     }
 
     useEffect(() => {

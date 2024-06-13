@@ -15,6 +15,8 @@ const AllUsers = () => {
         }
     })
 
+    console.log(users);
+
     return (
         <div>
             <div className="overflow-x-auto">

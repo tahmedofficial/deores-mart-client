@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { MdClose } from "react-icons/md";
-import useAuth from "../../../../Hooks/useAuth";
-import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AddressModal = ({ onClose, refetch, address }) => {
 
