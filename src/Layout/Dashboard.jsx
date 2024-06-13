@@ -16,7 +16,7 @@ const Dashboard = () => {
                 <Hamburger toggled={isOpen} toggle={setOpen} />
                 {isOpen ? <AdminDashboard></AdminDashboard> :
                     <div className="h-full">
-                        <ul className="flex flex-col gap-3 pt-3 items-center bg-primary_card_color rounded-sm h-full">
+                        <ul className="flex flex-col gap-3 pt-3 items-center bg-primary_card_color rounded-sm h-full min-h-screen">
                             <li><NavLink className={({ isActive }) => isActive ? "bg-black btn text-white btn-square" : "btn btn-square"} to="/dashboard/profile"><FaUser className="text-lg" /></NavLink></li>
                             <li><NavLink className={({ isActive }) => isActive ? "bg-black btn text-white btn-square" : "btn btn-square"} to="/dashboard/allUsers"><FaUsers className="text-xl" /></NavLink></li>
                             <li><NavLink className={({ isActive }) => isActive ? "bg-black btn text-white btn-square" : "btn btn-square"} to="/dashboard/addItem"><IoMdAddCircle className="text-xl" /></NavLink></li>

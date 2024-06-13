@@ -2,23 +2,38 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import profileIcon from "../../../assets/images/profileIcon.jpg";
 import { FaEdit } from "react-icons/fa";
+import UserUpdateModal from "./UserUpdateModal";
+import { useEffect, useState } from "react";
 
 const AllUsers = () => {
 
     const axiosSecure = useAxiosSecure();
+    const [showModal, setShowModal] = useState(false);
+    const [search, setSearch] = useState("");
+    const [index, setIndex] = useState(0);
 
-    const { data: users = [] } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const res = await axiosSecure.get("/users");
+            const res = await axiosSecure.get(`/users?search=${search}`);
             return res.data;
         }
     })
 
-    console.log(users);
+    useEffect(() => {
+        refetch();
+    }, [search, refetch])
+
+    const handleUpdateUser = (index) => {
+        setIndex(index);
+        setShowModal(true);
+    }
 
     return (
         <div>
+            <div>
+                <input onChange={(e) => setSearch(e.target.value)} className="h-10 px-3 bg-primary_bg_color md:w-96 outline-none rounded-lg flex lg:mx-auto my-10" type="text" placeholder="Search hear" />
+            </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     <thead>
@@ -49,13 +64,18 @@ const AllUsers = () => {
                                     <td>{user.number}</td>
                                     <td>{user.role}</td>
                                     <td>
-                                        <button className="btn btn-sm bg-green-500 text-white"><FaEdit /></button>
+                                        <button onClick={() => handleUpdateUser(index)} className="btn btn-sm bg-green-500 text-white"><FaEdit /></button>
                                     </td>
                                 </tr>
                             )
                         }
                     </tbody>
                 </table>
+            </div>
+            <div>
+                {
+                    showModal ? <UserUpdateModal refetch={refetch} userInfo={users[index]} onClose={() => setShowModal(false)}></UserUpdateModal> : undefined
+                }
             </div>
         </div>
     );
