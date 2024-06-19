@@ -99,13 +99,15 @@ const UpdateProfileModal = ({ onClose, userInfo }) => {
                                 <input {...register("email")} className="w-full md:w-96 h-10 px-3 outline-none rounded-lg text-black" type="email" defaultValue={userInfo.email} />
                             </div>
                         </div>
-                        <div>
-                            <h3 className="ml-2 mb-1">Number</h3>
-                            <input {...register("number")} className="w-full md:w-full h-10 px-3 outline-none rounded-lg text-black" type="number" defaultValue={userInfo.number} />
-                        </div>
-                        <div>
-                            <h3 className="ml-2 mb-1">Profile Image</h3>
-                            <input {...register("image")} type="file" className="file-input file-input-bordered w-full max-w-xs" />
+                        <div className="lg:flex gap-4">
+                            <div>
+                                <h3 className="ml-2 mb-1">Number</h3>
+                                <input {...register("number")} className="w-full md:w-96 h-10 px-3 outline-none rounded-lg text-black" type="number" defaultValue={userInfo.number} />
+                            </div>
+                            <div>
+                                <h3 className="ml-2 mb-1">Profile Image</h3>
+                                <input {...register("image")} type="file" className="file-input file-input-bordered w-full h-10 border-0" />
+                            </div>
                         </div>
                         <button className="btn bg-black px-10 py-2 mt-4 text-white rounded-lg">Update</button>
                     </form>
