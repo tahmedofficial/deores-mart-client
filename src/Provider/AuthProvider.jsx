@@ -4,6 +4,7 @@ import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config"
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 export const AuthContext = createContext(null);
 
@@ -11,6 +12,7 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const axiosSecure = useAxiosSecure();
 
     const errorMessage = (message) => {
         toast.error(message, {
@@ -77,12 +79,25 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            setLoading(false);
+
+            // jwt token implement
+            if (currentUser) {
+                const userInfo = { email: currentUser?.email }
+                axiosSecure.post("/jwt", userInfo)
+                    .then(res => {
+                        localStorage.setItem("auth-token", res?.data?.token);
+                        setLoading(false);
+                    })
+            }
+            else {
+                localStorage.removeItem("auth-token");
+                setLoading(false);
+            }
         })
         return () => {
             unsubscribe();
         }
-    }, [user])
+    }, [user, axiosSecure])
 
     const authInfo = {
         user,

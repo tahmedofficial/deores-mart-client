@@ -71,7 +71,7 @@ const SignUp = () => {
     return (
         <div>
 
-            <h1 className="font-semibold text-center text-black py-20 text-4xl">Register Now</h1>
+            <h1 className="font-semibold text-center text-black py-20 text-4xl">Sign Up Now</h1>
             <div className="bg-primary_bg_color mx-3  p-10 md:w-4/6 md:mx-auto md:px-28 md:py-20 lg:px-44 rounded-2xl">
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
                     <div>
@@ -107,9 +107,9 @@ const SignUp = () => {
                         {errors.confirmPass && <span className="text-red-600">This field is required</span>}
                         {password === confirmPass ? undefined : <span className="text-red-600">Password did not match</span>}
                     </div>
-                    <button className="btn bg-black text-white text-lg font-medium hover:bg-primary_color duration-300">Register</button>
+                    <button className="btn bg-black text-white text-lg font-medium hover:bg-primary_color duration-300">Sign Up</button>
                     <div className="flex items-center font-medium mx-auto">
-                        <h3 className="text-black">Already Register</h3>
+                        <h3 className="text-black">Already Sign Up</h3>
                         <Link to="/login">
                             <h3 className=" btn btn-link">Login</h3>
                         </Link>

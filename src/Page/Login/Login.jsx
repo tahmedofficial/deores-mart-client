@@ -64,7 +64,7 @@ const Login = () => {
                     <div className="flex items-center font-medium mx-auto">
                         <h3>Do not have account?</h3>
                         <Link to="/signUp">
-                            <h3 className=" btn btn-link">Register</h3>
+                            <h3 className=" btn btn-link">Sign Up</h3>
                         </Link>
                     </div>
                 </form>
