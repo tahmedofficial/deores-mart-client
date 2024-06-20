@@ -61,7 +61,7 @@ const AddItem = () => {
 
     return (
         <div>
-            <h1 className="my-16 flex justify-center text-3xl text-black md:text-4xl font-medium">--- Add Products ---</h1>
+            <h1 className="my-16 flex justify-center text-3xl text-black md:text-4xl font-medium">--- Publish Products ---</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="bg-primary_bg_color flex flex-col justify-center p-8 lg:w-4/6 mx-auto md:px-16 md:py-10 lg:px-20 lg:py-16 mt-10 rounded-lg">
                 <div className="flex flex-col md:flex-row w-full gap-5">
                     <div className="w-full">
