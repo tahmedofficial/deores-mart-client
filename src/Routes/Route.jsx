@@ -12,6 +12,7 @@ import Cart from "../Page/Cart/Cart";
 import UserProfile from "../Page/UserProfile/UserProfile";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import ProductDetails from "../Components/ProductDetails/ProductDetails";
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: "/cart",
                 element: <Cart></Cart>
+            },
+            {
+                path: "/productDetails/:id",
+                element: <ProductDetails></ProductDetails>
             },
             {
                 path: "/login",

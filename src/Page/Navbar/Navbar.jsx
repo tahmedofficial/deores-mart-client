@@ -33,7 +33,7 @@ const Navbar = () => {
                 </div>
                 <button className="btn btn-ghost font-semibold text-black text-4xl">Deores</button>
                 <div className="navbar-end gap-3">
-                    <div className="dropdown dropdown-end z-30">
+                    <div className="dropdown dropdown-end z-20">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                             <div className="indicator">
                                 <BsCart3 className="h-5 w-5" />

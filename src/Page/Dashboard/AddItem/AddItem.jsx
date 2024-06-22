@@ -36,8 +36,8 @@ const AddItem = () => {
                 category: data.category,
                 sQuantity: parseInt(data.sQuantity),
                 mQuantity: parseInt(data.mQuantity),
+                lQuantity: parseInt(data.lQuantity),
                 xlQuantity: parseInt(data.xlQuantity),
-                xxlQuantity: parseInt(data.xxlQuantity),
                 quantity: parseInt(data.sQuantity) + parseInt(data.mQuantity) + parseInt(data.xlQuantity) + parseInt(data.xxlQuantity),
                 price: parseInt(data.price),
                 image: result?.data?.data?.display_url
@@ -120,11 +120,11 @@ const AddItem = () => {
                 </div>
                 <div className="flex flex-col md:flex-row w-full gap-5 mt-5">
                     <div className="w-full">
-                        <input {...register("xlQuantity", { required: true })} className="h-10 outline-none px-3 rounded-lg w-full" type="number" placeholder="XL quantity" />
+                        <input {...register("lQuantity", { required: true })} className="h-10 outline-none px-3 rounded-lg w-full" type="number" placeholder="L quantity" />
                         {errors.xlQuantity && <span className="text-red-600">This field is required</span>}
                     </div>
                     <div className="w-full">
-                        <input {...register("xxlQuantity", { required: true })} className="h-10 outline-none px-3 rounded-lg w-full" type="number" placeholder="XXL quantity" />
+                        <input {...register("xlQuantity", { required: true })} className="h-10 outline-none px-3 rounded-lg w-full" type="number" placeholder="XL quantity" />
                         {errors.xxlQuantity && <span className="text-red-600">This field is required</span>}
                     </div>
                 </div>
