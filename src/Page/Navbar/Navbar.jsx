@@ -4,12 +4,21 @@ import profileIcon from "../../assets/images/profileIcon.jpg";
 import { BsCart3 } from "react-icons/bs";
 import { RiMenu2Fill } from "react-icons/ri";
 import useAdmin from "../../Hooks/useAdmin";
+import useCart from "../../Hooks/useCart";
+import { useEffect, useState } from "react";
 
 
 const Navbar = () => {
 
     const { user } = useAuth();
     const [isAdmin] = useAdmin();
+    const [carts, refetch] = useCart();
+    const [showCart, setShowCart] = useState(false);
+    const totalPrice = carts.reduce((sum, cart) => sum + cart.price, 0);
+
+    useEffect(() => {
+        refetch();
+    }, [refetch, user?.email])
 
     const navItems = <>
         <li><NavLink to="/" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-black font-medium px-3 pb-2 border-black" : "font-medium"}>Home</NavLink></li>
@@ -33,23 +42,50 @@ const Navbar = () => {
                 </div>
                 <button className="btn btn-ghost font-semibold text-black text-4xl">Deores</button>
                 <div className="navbar-end gap-3">
+
                     <div className="dropdown dropdown-end z-20">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+                        <div onClick={() => setShowCart(true)} tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                             <div className="indicator">
                                 <BsCart3 className="h-5 w-5" />
-                                <span className="badge badge-sm indicator-item bg-rose-500 text-white">8</span>
+                                <span className="badge badge-sm indicator-item bg-rose-500 text-white">{carts.length}</span>
                             </div>
                         </div>
-                        <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
-                            <div className="card-body">
-                                <span className="font-bold text-lg">8 Items</span>
-                                <span className="text-info">Subtotal: $999</span>
-                                <div className="card-actions">
-                                    <button className="btn btn-sm btn-block bg-black text-white">View cart</button>
+                        {
+                            showCart ? <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
+                                <div className="card-body">
+                                    <span className="font-bold text-lg">{carts.length} Items</span>
+
+                                    <div className="overflow-x-auto">
+                                        <table className="table">
+                                            <tbody>
+                                                {
+                                                    carts.map(cart => <tr key={cart._id}>
+                                                        <td>
+                                                            <div className="avatar">
+                                                                <div className="mask mask-squircle w-12 h-12">
+                                                                    <img src={cart.image} alt="Image" />
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>${cart.price}</td>
+                                                    </tr>)
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {
+                                        carts.length > 0 ? <span className="text-black text-lg">Subtotal: ${totalPrice}</span> : undefined
+                                    }
+                                    <div className="card-actions">
+                                        <Link className="w-full" to="/cart">
+                                            <button onClick={() => setShowCart(false)} className="btn btn-sm w-full bg-black text-white">View cart</button>
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div> : undefined
+                        }
                     </div>
+
                     {
                         user ?
                             <>

@@ -1,12 +1,13 @@
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
 
     const { setUser, loginUsingGoogle, successMessage, errorMessage } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const location = useLocation();
     const navigate = useNavigate();
 
     const handleGoogleLogin = () => {
