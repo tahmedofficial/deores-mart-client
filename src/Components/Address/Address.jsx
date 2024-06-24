@@ -26,7 +26,7 @@ const Address = () => {
             <h3 className="h-10 bg-white mt-3 px-3 py-2 rounded-xl">Area: {address.area}</h3>
             <h3 className="h-10 bg-white mt-3 px-3 py-2 rounded-xl">City: {address.city}</h3>
             <h3 className="h-10 bg-white mt-3 px-3 py-2 rounded-xl">Detaild Address: {address.detailsAddress}</h3>
-            <button onClick={() => setShowModal(true)} className="btn bg-black text-white mt-5 px-10 flex mx-auto">Update Address</button>
+            <button onClick={() => setShowModal(true)} className="btn bg-black text-white rounded-none mt-5 px-10 flex mx-auto">Update Address</button>
             <div>
                 {
                     showModal ? <AddressModal refetch={refetch} address={address} onClose={() => setShowModal(false)}></AddressModal> : undefined

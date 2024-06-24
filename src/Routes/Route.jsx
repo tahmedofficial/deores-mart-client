@@ -13,6 +13,8 @@ import UserProfile from "../Page/UserProfile/UserProfile";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import ProductDetails from "../Components/ProductDetails/ProductDetails";
+import MyOrders from "../Components/MyOrders/MyOrders";
+import OrderStatus from "../Components/OrderStatus/OrderStatus";
 
 
 const router = createBrowserRouter([
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
             {
                 path: "/cart",
                 element: <PrivateRoute><Cart></Cart></PrivateRoute>
+            },
+            {
+                path: "/myOrders",
+                element: <MyOrders></MyOrders>
+            },
+            {
+                path: "/orderStatus",
+                element: <OrderStatus></OrderStatus>
             },
             {
                 path: "/productDetails/:id",

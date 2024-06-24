@@ -1,13 +1,13 @@
 import { MdVerified } from "react-icons/md";
 import useAuth from "../../../Hooks/useAuth";
 import profileIcon from "../../../assets/images/profileIcon.jpg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Address from "../../../Components/Address/Address";
-import MyOrders from "../../../Components/MyOrders/MyOrders";
 import { useState } from "react";
 import UpdateProfileModal from "./UpdateProfileModal";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { FaBorderAll } from "react-icons/fa";
 
 const Profile = () => {
 
@@ -45,13 +45,20 @@ const Profile = () => {
                         <span>{user?.emailVerified ? <MdVerified className="text-green-500" /> : undefined}</span>
                     </div>
                 </div>
-                <button onClick={() => setShowUpdateProfile(true)} className="btn bg-black text-white flex mt-5 mx-auto">Update Profile</button>
+                <button onClick={() => setShowUpdateProfile(true)} className="btn bg-black px-10 text-white flex mt-5 mx-auto rounded-none">Update Profile</button>
             </div>
 
             <div className="md:col-span-2">
                 <Address></Address>
-                <MyOrders></MyOrders>
-                <button onClick={handleLogOut} className="btn bg-black text-white px-10 mt-10">Log Out</button>
+                <div className="mt-10 flex gap-5">
+                    <Link to={"/myOrders"}>
+                        <button className="btn bg-black text-white px-10 rounded-none"><FaBorderAll />Previous Order</button>
+                    </Link>
+                    <Link to="/orderStatus">
+                        <button className="btn bg-black text-white px-10 rounded-none">Order Status</button>
+                    </Link>
+                </div>
+                <button onClick={handleLogOut} className="btn bg-black text-white px-10 mt-10 rounded-none">Log Out</button>
             </div>
 
             <div>

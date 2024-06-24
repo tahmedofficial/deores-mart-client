@@ -5,20 +5,20 @@ import useAuth from "../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import AddressModal from "../../Components/Address/AddressModal";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
 
     const [carts, refetch] = useCart();
     const { user, successMessage, errorMessage } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState("1");
     const totalPrice = carts.reduce((sum, cart) => sum + cart.price, 0);
+    let today = new Date().toLocaleString();
 
-    // axiosSecure.post("/createOrderId", { orderId: 570422 })
-    //     .then(res => {
-    //         console.log(res.data);
-    //     })
+    console.log(carts);
 
     const handleDelete = (id) => {
         axiosSecure.delete(`/carts/${id}`)
@@ -48,12 +48,37 @@ const Cart = () => {
 
     const handlePurchase = () => {
 
-        if (parseInt(paymentMethod) === 1) {
-            axiosSecure.post("/orders")
+        if (address) {
+            if (parseInt(paymentMethod) === 1) {
+
+                axiosSecure.get(`/orderId/66787ced0a24731ddb7f0286`)
+                    .then(res => {
+                        const orderData = {
+                            orderId: res?.data?.orderId,
+                            email: user?.email,
+                            date: today,
+                            status: "Pending",
+                            orderInfo: carts
+                        }
+                        axiosSecure.post("/orders", orderData)
+                            .then(result => {
+                                if (result?.data?.result?.insertedId) {
+                                    const orderId = `DS-${parseInt(res.data.orderId.split("-")[1]) + 1}`;
+                                    axiosSecure.patch(`/orderId/66787ced0a24731ddb7f0286`, { orderId })
+                                        .then(response => {
+                                            if (response.data.matchedCount > 0) {
+                                                refetch();
+                                                navigate("/allProducts");
+                                                successMessage("You have successfully purchased");
+                                            }
+                                        })
+                                }
+                            })
+                    })
+            }
+            else { errorMessage("Up Comming") }
         }
-        else {
-            errorMessage("Up Comming")
-        }
+        else { setShowModal(true) }
 
     }
 

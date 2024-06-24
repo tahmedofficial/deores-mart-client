@@ -47,7 +47,7 @@ const Navbar = () => {
                         <div onClick={() => setShowCart(true)} tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                             <div className="indicator">
                                 <BsCart3 className="h-5 w-5" />
-                                <span className="badge badge-sm indicator-item bg-rose-500 text-white">{carts.length}</span>
+                                <span className="badge badge-sm indicator-item bg-black text-white">{carts.length}</span>
                             </div>
                         </div>
                         {
@@ -77,9 +77,13 @@ const Navbar = () => {
                                         carts.length > 0 ? <span className="text-black text-lg">Subtotal: ${totalPrice}</span> : undefined
                                     }
                                     <div className="card-actions">
-                                        <Link className="w-full" to="/cart">
-                                            <button onClick={() => setShowCart(false)} className="btn btn-sm w-full bg-black text-white">View cart</button>
-                                        </Link>
+                                        {
+                                            carts.length ?
+                                                <Link className="w-full" to="/cart">
+                                                    <button onClick={() => setShowCart(false)} className="btn btn-sm w-full bg-black text-white">View cart</button>
+                                                </Link>
+                                                : <button disabled className="btn btn-sm w-full bg-black text-white">View cart</button>
+                                        }
                                     </div>
                                 </div>
                             </div> : undefined
