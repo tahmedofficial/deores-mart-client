@@ -1,4 +1,4 @@
-import { MdVerified } from "react-icons/md";
+import { MdDeliveryDining, MdVerified } from "react-icons/md";
 import useAuth from "../../../Hooks/useAuth";
 import profileIcon from "../../../assets/images/profileIcon.jpg";
 import { Link, useNavigate } from "react-router-dom";
@@ -50,12 +50,12 @@ const Profile = () => {
 
             <div className="md:col-span-2">
                 <Address></Address>
-                <div className="mt-10 flex gap-5">
+                <div className="mt-10 flex flex-col md:flex-row gap-5">
                     <Link to={"/myOrders"}>
                         <button className="btn bg-black text-white px-10 rounded-none"><FaBorderAll />Previous Order</button>
                     </Link>
                     <Link to="/orderStatus">
-                        <button className="btn bg-black text-white px-10 rounded-none">Order Status</button>
+                        <button className="btn bg-black text-white px-10 rounded-none"><MdDeliveryDining className="text-2xl" />Order Status</button>
                     </Link>
                 </div>
                 <button onClick={handleLogOut} className="btn bg-black text-white px-10 mt-10 rounded-none">Log Out</button>

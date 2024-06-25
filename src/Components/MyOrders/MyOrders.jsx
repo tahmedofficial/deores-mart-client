@@ -26,7 +26,7 @@ const MyOrders = () => {
                     <table className="table">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th></th>
                                 <th>Image</th>
                                 <th>Title</th>
                                 <th>Price</th>
@@ -39,9 +39,9 @@ const MyOrders = () => {
                         </thead>
                         <tbody className="bg-white">
                             {
-                                orders.map((order, index) => <>
+                                orders.map(order => <>
                                     {order.orderInfo.map(product => <tr key={product._id} className="hover">
-                                        <td>{index + 1}</td>
+                                        <td></td>
                                         <td>
                                             <div className="avatar">
                                                 <div className="mask mask-squircle w-12 h-12">

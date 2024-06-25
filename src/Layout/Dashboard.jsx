@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FaBorderAll, FaUser, FaUsers } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
 import { IoHomeSharp } from "react-icons/io5";
+import ScrollToTop from "../Components/ScrollToTop/ScrollToTop";
 
 const Dashboard = () => {
 
@@ -12,6 +13,7 @@ const Dashboard = () => {
 
     return (
         <div className="flex gap-3 px-2 font-montserrat">
+            <ScrollToTop></ScrollToTop>
             <div>
                 <Hamburger toggled={isOpen} toggle={setOpen} />
                 {isOpen ? <AdminDashboard></AdminDashboard> :

@@ -3,7 +3,7 @@ import { MdDelete } from "react-icons/md";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddressModal from "../../Components/Address/AddressModal";
 import { useNavigate } from "react-router-dom";
 
@@ -18,7 +18,11 @@ const Cart = () => {
     const totalPrice = carts.reduce((sum, cart) => sum + cart.price, 0);
     let today = new Date().toLocaleString();
 
-    console.log(carts);
+    useEffect(() => {
+        if (carts.length === 0) {
+            navigate("/allProducts");
+        }
+    }, [carts, navigate])
 
     const handleDelete = (id) => {
         axiosSecure.delete(`/carts/${id}`)
@@ -68,7 +72,7 @@ const Cart = () => {
                                         .then(response => {
                                             if (response.data.matchedCount > 0) {
                                                 refetch();
-                                                navigate("/allProducts");
+                                                navigate("/orderStatus");
                                                 successMessage("You have successfully purchased");
                                             }
                                         })

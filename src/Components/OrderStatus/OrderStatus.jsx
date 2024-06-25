@@ -1,7 +1,8 @@
-import { IoCheckmarkCircleSharp } from "react-icons/io5";
+import { IoArrowBackSharp, IoCheckmarkCircleSharp } from "react-icons/io5";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 const OrderStatus = () => {
 
@@ -31,7 +32,7 @@ const OrderStatus = () => {
                             <ul className="timeline timeline-vertical lg:timeline-horizontal">
                                 <li>
                                     <div className={order.status === pending ? "timeline-start btn btn-sm rounded-full bg-green-500 text-white" : "timeline-start btn btn-sm rounded-full bg-white border-gray-400"}>Pending</div>
-                                    <div className={order.status === pending ? "timeline-middle text-green-500" : "timeline-middle"}>
+                                    <div className={order.status === pending ? "timeline-middle text-green-500" : "timeline-middle text-black"}>
                                         <IoCheckmarkCircleSharp className="text-2xl" />
                                     </div>
                                     <hr />
@@ -39,7 +40,7 @@ const OrderStatus = () => {
                                 <li>
                                     <hr />
                                     <div className={order.status === confirm ? "timeline-end btn btn-sm rounded-full bg-green-500 text-white" : "timeline-end btn btn-sm rounded-full bg-white border-gray-400"}>Confirm</div>
-                                    <div className={order.status === confirm ? "timeline-middle text-green-500" : "timeline-middle"}>
+                                    <div className={order.status === confirm ? "timeline-middle text-green-500" : "timeline-middle text-black"}>
                                         <IoCheckmarkCircleSharp className="text-2xl" />
                                     </div>
                                     <hr />
@@ -47,7 +48,7 @@ const OrderStatus = () => {
                                 <li>
                                     <hr />
                                     <div className={order.status === shipped ? "timeline-start btn btn-sm rounded-full bg-green-500 text-white" : "timeline-start btn btn-sm rounded-full bg-white border-gray-400"}>Shipped</div>
-                                    <div className={order.status === shipped ? "timeline-middle text-green-500" : "timeline-middle"}>
+                                    <div className={order.status === shipped ? "timeline-middle text-green-500" : "timeline-middle text-black"}>
                                         <IoCheckmarkCircleSharp className="text-2xl" />
                                     </div>
                                     <hr />
@@ -55,7 +56,7 @@ const OrderStatus = () => {
                                 <li>
                                     <hr />
                                     <div className={order.status === "Delivered" ? "timeline-end btn btn-sm rounded-full bg-green-500 text-white" : "timeline-end btn btn-sm rounded-full bg-white border-gray-400"}>Delivered</div>
-                                    <div className={order.status === "Delivered" ? "timeline-middle text-green-500" : "timeline-middle"}>
+                                    <div className={order.status === "Delivered" ? "timeline-middle text-green-500" : "timeline-middle text-black"}>
                                         <IoCheckmarkCircleSharp className="text-2xl" />
                                     </div>
                                 </li>
@@ -99,6 +100,11 @@ const OrderStatus = () => {
                     </div>
                 </div>)
             }
+            <div>
+                <Link to="/">
+                    <button className="btn bg-black text-white rounded-none px-10 mt-10"><IoArrowBackSharp />Go Home</button>
+                </Link>
+            </div>
         </div>
     );
 };

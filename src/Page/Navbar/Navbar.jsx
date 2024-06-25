@@ -14,6 +14,7 @@ const Navbar = () => {
     const [isAdmin] = useAdmin();
     const [carts, refetch] = useCart();
     const [showCart, setShowCart] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
     const totalPrice = carts.reduce((sum, cart) => sum + cart.price, 0);
 
     useEffect(() => {
@@ -32,12 +33,14 @@ const Navbar = () => {
             <div className="navbar md:w-5/6 mx-auto px-3">
                 <div className="navbar-start">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost text-black">
+                        <div onClick={() => setShowMenu(!showMenu)} tabIndex={0} role="button" className="btn btn-ghost text-black">
                             <RiMenu2Fill className="h-5 w-5" />
                         </div>
-                        <ul tabIndex={0} className="flex flex-col z-10 bg-primary_bg_color text-black gap-3 dropdown-content mt-3 p-6 shadow rounded-box w-52">
-                            {navItems}
-                        </ul>
+                        {
+                            showMenu ? <ul tabIndex={0} className="flex flex-col z-10 bg-primary_bg_color text-black gap-3 dropdown-content mt-3 p-6 shadow rounded-box w-52">
+                                {navItems}
+                            </ul> : undefined
+                        }
                     </div>
                 </div>
                 <button className="btn btn-ghost font-semibold text-black text-4xl">Deores</button>
@@ -46,7 +49,7 @@ const Navbar = () => {
                     <div className="dropdown dropdown-end z-20">
                         <div onClick={() => setShowCart(true)} tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                             <div className="indicator">
-                                <BsCart3 className="h-5 w-5" />
+                                <BsCart3 className="h-5 w-5 text-black" />
                                 <span className="badge badge-sm indicator-item bg-black text-white">{carts.length}</span>
                             </div>
                         </div>

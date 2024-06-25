@@ -40,6 +40,7 @@ const ProductDetails = () => {
         setQuantity(1);
     }, [size])
 
+
     const handleSize = (size) => {
         setSize(size);
         if (size === "S") { return setAvailableQuantity(sQuantity) }
