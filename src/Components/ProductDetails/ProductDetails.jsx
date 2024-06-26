@@ -7,6 +7,7 @@ import SerriedSlider from "../SerriedSlider/SerriedSlider";
 import useAuth from "../../Hooks/useAuth";
 import useCart from "../../Hooks/useCart";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import DetailsSideBar from "./DetailsSideBar";
 
 
 const ProductDetails = () => {
@@ -104,7 +105,7 @@ const ProductDetails = () => {
         <div className="md:w-5/6 mx-auto px-5 mt-10">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                 <div>
-                    <img className="rounded-lg mix-blend-multiply h-full" src={image} alt="image" />
+                    <img className="rounded-lg mix-blend-multiply" src={image} alt="image" />
                 </div>
                 <div className="flex flex-col gap-2">
                     <div className="flex flex-col gap-2">
@@ -174,11 +175,11 @@ const ProductDetails = () => {
                     </div>
                 </div>
                 <div>
-
+                    <DetailsSideBar gender={gender} id={id}></DetailsSideBar>
                 </div>
             </div>
             <div>
-                <SerriedSlider category={category}></SerriedSlider>
+                <SerriedSlider category={category} id={id}></SerriedSlider>
             </div>
 
             <div>
