@@ -17,7 +17,10 @@ const ProductCatrs = ({ product }) => {
                         : <FaRegHeart onClick={() => setWish(!wish)} className='text-2xl text-rose-500 absolute top-5 right-5 opacity-0 group-hover:opacity-100 duration-500' />
                 }
                 <div className='w-full'>
-                    <img className='lg:max-h-[500px] lg:min-h-[495px] w-full' src={image} alt="Phote" />
+                    {
+                        image ? <img className='lg:max-h-[500px] lg:min-h-[495px] w-full' src={image} alt="Phote" />
+                            : <span className="loading loading-ball loading-lg flex mx-auto mt-20"></span>
+                    }
                 </div>
             </div>
             <div className='flex-grow flex flex-col justify-end w-full mt-3'>

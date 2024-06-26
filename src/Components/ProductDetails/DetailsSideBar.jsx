@@ -20,31 +20,33 @@ const DetailsSideBar = ({ gender, id }) => {
         refetch();
     }, [gender, id, refetch])
 
-    console.log(randomProducts, "random");
-
     return (
         <div>
-            <h1 className='mb-5 mt-5 md:mt-0 text-center text-2xl font-medium'>---Suggestion---</h1>
-            <div className='grid grid-cols-2 md:grid-cols-3 gap-5'>
-                {
-                    randomProducts.map(product => <div key={product._id}>
-                        <div className='flex flex-col items-center'>
-                            <div className='w-full'>
-                                <img className='w-screen rounded-lg h-48' src={product.image} alt="Phote" />
-                            </div>
-                            <div className='flex flex-col justify-end w-full mt-3'>
-                                <Link to={`/productDetails/${product._id}`}>
-                                    <button className='btn btn-sm w-full rounded-none border-0 bg-black text-white'>View Details</button>
-                                </Link>
-                            </div>
-                            <div className='flex justify-center w-full pt-2'>
-                                <h1 className='bg-rose-100 text-rose-700 font-medium px-8 py-1 rounded-lg text-center mt-2'>$ {product.price}</h1>
-                            </div>
-                        </div>
-                    </div>)
-                }
-            </div>
-        </div>
+            {
+                randomProducts.length > 0 ? <>
+                    <h1 className='mb-5 mt-5 md:mt-0 text-center text-2xl font-medium'>---Suggestion---</h1>
+                    <div className='grid grid-cols-2 md:grid-cols-3 gap-5'>
+                        {
+                            randomProducts.map(product => <div key={product._id}>
+                                <div className='flex flex-col items-center'>
+                                    <div className='w-full'>
+                                        <img className='w-screen rounded-lg h-56 lg:h-52' src={product.image} alt="Phote" />
+                                    </div>
+                                    <div className='flex flex-col justify-end w-full mt-3'>
+                                        <Link to={`/productDetails/${product._id}`}>
+                                            <button className='btn btn-sm w-full rounded-none border-0 bg-black text-white'>View Details</button>
+                                        </Link>
+                                    </div>
+                                    <div className='flex justify-center w-full pt-2'>
+                                        <h1 className='bg-rose-100 text-rose-700 font-medium px-8 py-1 rounded-lg text-center mt-2'>$ {product.price}</h1>
+                                    </div>
+                                </div>
+                            </div>)
+                        }
+                    </div>
+                </> : <span className="loading loading-ball loading-lg flex mx-auto text-black mt-20"></span>
+            }
+        </div >
     );
 };
 
