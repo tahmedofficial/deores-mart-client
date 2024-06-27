@@ -1,11 +1,12 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import profileIcon from "../../assets/images/profileIcon.jpg";
 import { BsCart3 } from "react-icons/bs";
-import { RiMenu2Fill } from "react-icons/ri";
 import useAdmin from "../../Hooks/useAdmin";
 import useCart from "../../Hooks/useCart";
 import { useEffect, useState } from "react";
+import MenuToggle from "./MenuToggle";
+import Hamburger from "hamburger-react";
 
 
 const Navbar = () => {
@@ -14,19 +15,12 @@ const Navbar = () => {
     const [isAdmin] = useAdmin();
     const [carts, refetch] = useCart();
     const [showCart, setShowCart] = useState(false);
-    const [showMenu, setShowMenu] = useState(false);
+    const [isOpen, setOpen] = useState(false);
     const totalPrice = carts.reduce((sum, cart) => sum + cart.price, 0);
 
     useEffect(() => {
         refetch();
     }, [refetch, user?.email])
-
-    const navItems = <>
-        <li><NavLink to="/" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-black font-medium px-3 pb-2 border-black" : "font-medium"}>Home</NavLink></li>
-        <li><NavLink to="allProducts" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-black font-medium px-3 pb-2 border-black" : "font-medium"}>allProducts</NavLink></li>
-        <li><NavLink to="login" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-black font-medium px-3 pb-2 border-black" : "font-medium"}>Login</NavLink></li>
-        <li><NavLink to="signUp" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-black font-medium px-3 pb-2 border-black" : "font-medium"}>Sign Up</NavLink></li>
-    </>
 
     const skeletonStyle = {
         borderRadius: '8px',
@@ -41,24 +35,18 @@ const Navbar = () => {
     };
 
     return (
-        <nav>
-            <div className="navbar md:w-5/6 mx-auto px-3">
-                <div className="navbar-start">
-                    <div className="dropdown">
-                        <div onClick={() => setShowMenu(!showMenu)} tabIndex={0} role="button" className="btn btn-ghost text-black">
-                            <RiMenu2Fill className="h-5 w-5" />
-                        </div>
-                        {
-                            showMenu ? <ul tabIndex={0} className="flex flex-col z-10 bg-primary_bg_color text-black gap-3 dropdown-content mt-3 p-6 shadow rounded-box w-52">
-                                {navItems}
-                            </ul> : undefined
-                        }
+        <div>
+            <div className="navbar px-0">
+                <div className="navbar-start text-black">
+                    <div>
+                        <Hamburger toggled={isOpen} toggle={setOpen}></Hamburger>
+                        <MenuToggle isOpen={isOpen}></MenuToggle>
                     </div>
                 </div>
                 <Link to="/">
                     <button style={skeletonStyle} className="btn btn-ghost px-5 font-semibold text-black text-4xl">Deores</button>
                 </Link>
-                <div className="navbar-end gap-3">
+                <div className="navbar-end gap-3 pr-4">
 
                     <div className="dropdown dropdown-end z-20">
                         <div onClick={() => setShowCart(true)} tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -130,9 +118,8 @@ const Navbar = () => {
                             </Link>
                     }
                 </div>
-
             </div>
-        </nav>
+        </div>
     );
 };
 
