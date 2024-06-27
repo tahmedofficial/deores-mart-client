@@ -16,12 +16,14 @@ const ProductCatrs = ({ product }) => {
                     wish ? <FaHeart onClick={() => setWish(!wish)} className='text-2xl text-rose-500 absolute top-5 right-5 opacity-0 group-hover:opacity-100 duration-500' />
                         : <FaRegHeart onClick={() => setWish(!wish)} className='text-2xl text-rose-500 absolute top-5 right-5 opacity-0 group-hover:opacity-100 duration-500' />
                 }
-                <div className='w-full'>
-                    {
-                        image ? <img className='lg:max-h-[500px] lg:min-h-[495px] w-full' src={image} alt="Phote" />
-                            : <span className="loading loading-ball loading-lg flex mx-auto mt-20"></span>
-                    }
-                </div>
+                <Link to={`/productDetails/${_id}`}>
+                    <div className='w-full'>
+                        {
+                            image ? <img className='lg:max-h-[500px] lg:min-h-[495px] w-screen' src={image} alt="Phote" />
+                                : <span className="loading loading-ball loading-lg flex mx-auto mt-20"></span>
+                        }
+                    </div>
+                </Link>
             </div>
             <div className='flex-grow flex flex-col justify-end w-full mt-3'>
                 <Link to={`/productDetails/${_id}`}>

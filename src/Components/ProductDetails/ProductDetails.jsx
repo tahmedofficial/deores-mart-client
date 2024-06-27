@@ -9,7 +9,7 @@ import useCart from "../../Hooks/useCart";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import DetailsSideBar from "./DetailsSideBar";
 import { FaArrowLeftLong } from "react-icons/fa6";
-
+import { motion } from "framer-motion";
 
 const ProductDetails = () => {
 
@@ -189,7 +189,14 @@ const ProductDetails = () => {
             </div>
             <div>
                 <Link to="/allProducts">
-                    <button className="btn px-10 bg-black text-white rounded-none mt-14 md:mt-20"><FaArrowLeftLong />Go Back</button>
+                    <motion.button className="btn px-10 bg-black hover:bg-black text-white rounded-none mt-14 md:mt-20 flex items-center" whileHover="hover">
+                        <motion.span
+                            variants={{ hover: { x: -10 } }}
+                            transition={{ type: "spring", stiffness: 300 }}>
+                            <FaArrowLeftLong />
+                        </motion.span>
+                        <span className="ml-2">Go Back</span>
+                    </motion.button>
                 </Link>
             </div>
         </div>

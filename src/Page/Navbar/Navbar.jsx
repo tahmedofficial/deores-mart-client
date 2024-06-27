@@ -28,6 +28,18 @@ const Navbar = () => {
         <li><NavLink to="signUp" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-black font-medium px-3 pb-2 border-black" : "font-medium"}>Sign Up</NavLink></li>
     </>
 
+    const skeletonStyle = {
+        borderRadius: '8px',
+        '--tw-bg-opacity': 1,
+        backgroundColor: '#ffffff',
+        willChange: 'background-position',
+        animation: 'skeleton 1.8s ease-in-out infinite',
+        backgroundImage: 'linear-gradient(105deg, transparent 0%, transparent 40%, #d8d8d8 50%, transparent 60%, transparent 100%)',
+        backgroundSize: '200% auto',
+        backgroundRepeat: 'no-repeat',
+        backgroundPositionX: '-50%',
+    };
+
     return (
         <nav>
             <div className="navbar md:w-5/6 mx-auto px-3">
@@ -43,7 +55,9 @@ const Navbar = () => {
                         }
                     </div>
                 </div>
-                <button className="btn btn-ghost font-semibold text-black text-4xl">Deores</button>
+                <Link to="/">
+                    <button style={skeletonStyle} className="btn btn-ghost px-5 font-semibold text-black text-4xl">Deores</button>
+                </Link>
                 <div className="navbar-end gap-3">
 
                     <div className="dropdown dropdown-end z-20">

@@ -8,6 +8,7 @@ import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import { Link } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6';
+import { motion } from "framer-motion";
 
 const SerriedSlider = ({ category, id }) => {
 
@@ -68,10 +69,15 @@ const SerriedSlider = ({ category, id }) => {
                             </SwiperSlide>)
                         }
                     </Swiper>
-                    <div onClick={() => swiperRef.current.swiper.slideNext()} className='absolute btn rounded-none border-0 btn-sm top-60 right-5 bg-black text-white z-10'>
-                        <FaArrowRightLong />
+                    <div onClick={() => swiperRef.current.swiper.slideNext()} className='absolute btn hover:bg-primary_color rounded-none border-0 btn-sm top-60 right-5 bg-black text-white z-10'>
+                        <motion.span
+                            animate={{ x: [0, 8, 0] }}
+                            transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
+                        >
+                            <FaArrowRightLong />
+                        </motion.span>
                     </div>
-                    <div onClick={() => swiperRef.current.swiper.slidePrev()} className='absolute btn rounded-none border-0 btn-sm top-60 left-5 bg-black text-white z-10'>
+                    <div onClick={() => swiperRef.current.swiper.slidePrev()} className='absolute btn hover:bg-primary_color rounded-none border-0 btn-sm top-60 left-5 bg-black text-white z-10'>
                         <FaArrowLeftLong />
                     </div>
                 </> : undefined

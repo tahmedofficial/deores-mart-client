@@ -86,9 +86,21 @@ const Cart = () => {
 
     }
 
+    const skeletonStyle = {
+        borderRadius: '8px',
+        '--tw-bg-opacity': 1,
+        backgroundColor: '#ffffff',
+        willChange: 'background-position',
+        animation: 'skeleton 1.8s ease-in-out infinite',
+        backgroundImage: 'linear-gradient(105deg, transparent 0%, transparent 40%, #d8d8d8 50%, transparent 60%, transparent 100%)',
+        backgroundSize: '200% auto',
+        backgroundRepeat: 'no-repeat',
+        backgroundPositionX: '-50%',
+    };
+
     return (
         <div className="md:w-4/6 mx-auto px-5">
-            <h1 className="btn btn-ghost font-semibold text-black flex justify-center my-8 text-4xl">Deores</h1>
+            <h1 style={skeletonStyle} className="btn btn-ghost font-semibold text-black flex justify-center my-8 text-4xl">Deores</h1>
             <h3 className="text-3xl text-center mb-5 font-medium">Purchase Info</h3>
 
             <div className="overflow-x-auto">

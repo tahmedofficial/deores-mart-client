@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
-import { IoArrowBackSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import { motion } from "framer-motion";
 
 const MyOrders = () => {
 
@@ -74,7 +75,14 @@ const MyOrders = () => {
                     </div > : <span className="loading loading-spinner loading-lg text-black flex mx-auto mt-20"></span>
             }
             <Link to="/">
-                <button className="btn bg-black text-white rounded-none px-10 mt-10"><IoArrowBackSharp />Go Home</button>
+                <motion.button className="btn px-10 bg-black hover:bg-black text-white rounded-none mt-14 md:mt-20 flex items-center" whileHover="hover">
+                    <motion.span
+                        variants={{ hover: { x: -10 } }}
+                        transition={{ type: "spring", stiffness: 300 }}>
+                        <FaArrowLeftLong />
+                    </motion.span>
+                    <span className="ml-2">Go Home</span>
+                </motion.button>
             </Link>
         </div>
     );

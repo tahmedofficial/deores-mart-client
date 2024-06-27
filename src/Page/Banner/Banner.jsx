@@ -1,6 +1,8 @@
 import AwesomeSlider from 'react-awesome-slider';
 import "react-awesome-slider/dist/styles.css";
+import { FaCartShopping } from 'react-icons/fa6';
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Banner = () => {
 
@@ -13,7 +15,15 @@ const Banner = () => {
                             <h1 className="text-5xl font-medium">It is not just food, It is an Exerience</h1>
                             <h3 className="my-5">Wagyu beef boasts intense marbling thin streaks of fat dispersed evenly throughout the meat. This translates to a more tender, flavourful cut of meat that can actually be cooked longer without getting too tough or dried out.</h3>
                             <Link to="/allProducts">
-                                <button className="btn rounded-none px-10 md:mt-20 bg-black text-white hover:bg-primary_color duration-300">Purchase</button>
+                                <button className="btn rounded-none px-10 md:mt-20 bg-black text-white hover:bg-primary_color duration-300">
+                                    <motion.span
+                                        // whileHover={{ x: [-2, 2, -2, 2, -2, 2, -2, 2, -2, 0] }} // Vibration effect
+                                        animate={{ x: [-2, 2, -2, 2, -2, 2, -2, 2, -2, 0] }}
+                                        transition={{ repeat: Infinity, repeatDelay: 1, duration: 1.5, ease: "easeInOut" }} // Duration and easing
+                                        className="mr-1">
+                                        <FaCartShopping />
+                                    </motion.span>
+                                    Purchase</button>
                             </Link>
                         </div>
                         <div className="col-span-1">
