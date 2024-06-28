@@ -70,7 +70,7 @@ const MenuToggle = ({ isOpen }) => {
 
     return (
         <div ref={scope}>
-            <nav className="bg-black absolute z-50 w-52 md:w-80 rounded-r-lg h-full">
+            <nav className="bg-black bg-opacity-80 absolute z-20 w-full md:w-80 md:rounded-r-lg h-full pl-3">
                 <ul style={ulStyle}>
                     <li style={liStyle}><NavLink to="/" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-white font-medium px-3 pb-2 border-white" : "font-medium"}>Home</NavLink></li>
                     <li style={liStyle}><NavLink to="allProducts" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-white font-medium px-3 pb-2 border-white" : "font-medium"}>allProducts</NavLink></li>

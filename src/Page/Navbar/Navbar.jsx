@@ -46,7 +46,7 @@ const Navbar = () => {
                 <Link to="/">
                     <button style={skeletonStyle} className="btn btn-ghost px-5 font-semibold text-black text-4xl">Deores</button>
                 </Link>
-                <div className="navbar-end gap-3 pr-4">
+                <div className="navbar-end gap-3 pr-2">
 
                     <div className="dropdown dropdown-end z-20">
                         <div onClick={() => setShowCart(true)} tabIndex={0} role="button" className="btn btn-ghost btn-circle">
