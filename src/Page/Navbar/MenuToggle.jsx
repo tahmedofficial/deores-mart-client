@@ -4,6 +4,7 @@ import { useAnimate, stagger } from "framer-motion";
 import { NavLink } from 'react-router-dom';
 
 const useMenuAnimation = (isOpen) => {
+    
     const [scope, animate] = useAnimate();
 
     useEffect(() => {
@@ -85,5 +86,5 @@ const MenuToggle = ({ isOpen }) => {
 export default MenuToggle;
 
 MenuToggle.propTypes = {
-    isOpen: PropTypes.func
+    isOpen: PropTypes.bool
 }

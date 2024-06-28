@@ -1,36 +1,68 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import useAuth from "../../Hooks/useAuth";
-import { Link } from "react-router-dom";
-import { FaArrowLeftLong } from "react-icons/fa6";
-import { motion } from "framer-motion";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useState } from "react";
+import UpdateStatusModal from "./UpdateStatusModal";
+import { MdDelete } from "react-icons/md";
+import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
-const MyOrders = () => {
+const OrderedItems = () => {
 
-    const { user } = useAuth();
+    const { successMessage } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const [showModal, setShowModal] = useState(false);
+    const [ordersInfo, setOrdersInfo] = useState("");
 
-    const { data: orders = [] } = useQuery({
-        queryKey: [user?.email, "orders"],
+    const { data: orders = [], refetch } = useQuery({
+        queryKey: ["orders"],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/orders/delivered/${user?.email}`);
+            const res = await axiosSecure.get("/orders");
             return res.data;
         }
     })
 
+    const handleStatus = (index) => {
+        setOrdersInfo(orders[index]);
+        setShowModal(true);
+    }
+
+    const handleDelete = (orderId) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Delete"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/orders/${orderId}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            refetch();
+                            successMessage("This Order has been deleted");
+                        }
+                    })
+            }
+        });
+    }
+
     return (
-        <div className="md:w-5/6 mx-auto px-3">
+        <div className="md:w-4/6 mx-auto mt-16">
             {
                 orders.length > 0 ?
                     <>
-                        <h1 className="text-center text-3xl font-medium mt-10">---My Orders---</h1>
+                        <h1 className="text-center text-3xl font-medium">---Order Status---</h1>
                         {
-                            orders.map(order => <div key={order._id}>
+                            orders.map((order, index) => <div key={order._id}>
                                 <div className="bg-primary_bg_color mt-10 py-5 px-3 rounded-lg">
                                     <div className="flex flex-col lg:flex-row items-center lg:justify-around gap-3 py-5">
                                         <h3 className="text-xl font-medium">Order Id: {order.orderId}</h3>
                                         <h3>Order Date: {order.date.split(",")[0]}</h3>
-                                        <button className="btn btn-sm bg-green-500 text-white">{order.status}</button>
+                                        <h3>Status: {order.status}</h3>
+                                        <button onClick={() => handleStatus(index)} className="btn btn-sm bg-black text-white">Update Status</button>
+                                        <button onClick={() => handleDelete(order.orderId)} className="btn btn-sm text-lg bg-black text-white"><MdDelete /></button>
                                     </div>
                                     <div>
                                         <div className="overflow-x-auto">
@@ -39,7 +71,6 @@ const MyOrders = () => {
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Image</th>
-                                                        <th>Title</th>
                                                         <th>Price</th>
                                                         <th>Quantity</th>
                                                         <th>Size</th>
@@ -57,8 +88,7 @@ const MyOrders = () => {
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td>{product.title}</td>
-                                                            <td>${product.price}</td>
+                                                            <td>$ {product.price}</td>
                                                             <td>{product.purchaseQuantity}</td>
                                                             <td>{product.size}</td>
                                                         </tr>)
@@ -72,18 +102,13 @@ const MyOrders = () => {
                         }
                     </> : <span className="loading loading-spinner loading-lg text-black flex mx-auto mt-20"></span>
             }
-            <Link to="/">
-                <motion.button className="btn px-10 bg-black hover:bg-black text-white rounded-none mt-14 md:mt-20 flex items-center" whileHover="hover">
-                    <motion.span
-                        variants={{ hover: { x: -10 } }}
-                        transition={{ type: "spring", stiffness: 300 }}>
-                        <FaArrowLeftLong />
-                    </motion.span>
-                    <span className="ml-2">Go Home</span>
-                </motion.button>
-            </Link>
+            <div>
+                {
+                    showModal ? <UpdateStatusModal onClose={() => setShowModal(false)} order={ordersInfo} refetch={refetch}></UpdateStatusModal> : undefined
+                }
+            </div>
         </div>
     );
 };
 
-export default MyOrders;
+export default OrderedItems;

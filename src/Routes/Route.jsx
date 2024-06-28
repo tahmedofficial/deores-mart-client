@@ -15,6 +15,7 @@ import AdminRoute from "./AdminRoute";
 import ProductDetails from "../Components/ProductDetails/ProductDetails";
 import MyOrders from "../Components/MyOrders/MyOrders";
 import OrderStatus from "../Components/OrderStatus/OrderStatus";
+import OrderedItems from "../Page/Dashboard/OrderedItems/OrderedItems";
 
 
 const router = createBrowserRouter([
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
             {
                 path: "addItem",
                 element: <AddItem></AddItem>
+            },
+            {
+                path: "orders",
+                element: <OrderedItems></OrderedItems>
             }
         ]
     }

@@ -14,8 +14,6 @@ const OurProducts = () => {
         }
     })
 
-    console.log(products);
-
     return (
         <div className="md:w-5/6 mx-auto mt-16 px-4 md:px-0">
             {

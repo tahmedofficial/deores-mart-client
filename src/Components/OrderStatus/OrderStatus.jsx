@@ -18,11 +18,10 @@ const OrderStatus = () => {
             return res.data;
         }
     })
-    console.log(orders);
 
-    const pending = "Pending" || "Confirm" || "Shipped" || "Delivered";
-    const confirm = "Confirm" || "Shipped" || "Delivered";
-    const shipped = "Shipped" || "Delivered";
+    const pending = ["Pending", "Confirm", "Shipped", "Delivered"];
+    const confirm = ["Confirm", "Shipped", "Delivered"];
+    const shipped = ["Shipped", "Delivered"];
 
     return (
         <div className="md:w-4/6 mx-auto p-4 mt-16">
@@ -36,24 +35,24 @@ const OrderStatus = () => {
                                     <div className="flex justify-center pb-5">
                                         <ul className="timeline timeline-vertical lg:timeline-horizontal">
                                             <li>
-                                                <div className={order.status === pending ? "timeline-start btn btn-sm rounded-full bg-green-500 text-white" : "timeline-start btn btn-sm rounded-full bg-white border-gray-400"}>Pending</div>
-                                                <div className={order.status === pending ? "timeline-middle text-green-500" : "timeline-middle text-black"}>
+                                                <div className={pending.includes(order.status) ? "timeline-start btn btn-sm rounded-full bg-green-500 text-white" : "timeline-start btn btn-sm rounded-full bg-white border-gray-400"}>Pending</div>
+                                                <div className={pending.includes(order.status) ? "timeline-middle text-green-500" : "timeline-middle text-black"}>
                                                     <IoCheckmarkCircleSharp className="text-2xl" />
                                                 </div>
                                                 <hr />
                                             </li>
                                             <li>
                                                 <hr />
-                                                <div className={order.status === confirm ? "timeline-end btn btn-sm rounded-full bg-green-500 text-white" : "timeline-end btn btn-sm rounded-full bg-white border-gray-400"}>Confirm</div>
-                                                <div className={order.status === confirm ? "timeline-middle text-green-500" : "timeline-middle text-black"}>
+                                                <div className={confirm.includes(order.status) ? "timeline-end btn btn-sm rounded-full bg-green-500 text-white" : "timeline-end btn btn-sm rounded-full bg-white border-gray-400"}>Confirm</div>
+                                                <div className={confirm.includes(order.status) ? "timeline-middle text-green-500" : "timeline-middle text-black"}>
                                                     <IoCheckmarkCircleSharp className="text-2xl" />
                                                 </div>
                                                 <hr />
                                             </li>
                                             <li>
                                                 <hr />
-                                                <div className={order.status === shipped ? "timeline-start btn btn-sm rounded-full bg-green-500 text-white" : "timeline-start btn btn-sm rounded-full bg-white border-gray-400"}>Shipped</div>
-                                                <div className={order.status === shipped ? "timeline-middle text-green-500" : "timeline-middle text-black"}>
+                                                <div className={shipped.includes(order.status) ? "timeline-start btn btn-sm rounded-full bg-green-500 text-white" : "timeline-start btn btn-sm rounded-full bg-white border-gray-400"}>Shipped</div>
+                                                <div className={shipped.includes(order.status) ? "timeline-middle text-green-500" : "timeline-middle text-black"}>
                                                     <IoCheckmarkCircleSharp className="text-2xl" />
                                                 </div>
                                                 <hr />
