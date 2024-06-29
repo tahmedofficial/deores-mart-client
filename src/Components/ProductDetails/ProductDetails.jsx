@@ -99,7 +99,6 @@ const ProductDetails = () => {
         else {
             navigate("/login", { state: location.pathname });
         }
-
     }
 
     return (
@@ -167,9 +166,9 @@ const ProductDetails = () => {
                             </div>
                         </div>
                         <div className="flex gap-3 items-center mt-8">
-                            <button onClick={() => handlePlusQuantity(quantity + 1)} className="btn btn-sm text-lg w-8 border-0 rounded-none bg-black text-white">+</button>
-                            <button className="btn btn-sm border-black bg-white rounded-none text-black">{quantity}</button>
                             <button onClick={() => handleMinusQuantity(quantity - 1)} className="btn btn-sm text-lg w-8 border-0 rounded-none bg-black text-white">-</button>
+                            <button className="btn btn-sm border-black bg-white rounded-none text-black">{quantity}</button>
+                            <button onClick={() => handlePlusQuantity(quantity + 1)} className="btn btn-sm text-lg w-8 border-0 rounded-none bg-black text-white">+</button>
                         </div>
                         <div className="flex gap-10 mt-10">
                             <button onClick={handleAddToCart} className="btn bg-black text-white rounded-none px-10">Add To Cart</button>

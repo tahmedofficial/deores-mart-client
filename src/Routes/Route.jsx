@@ -16,6 +16,7 @@ import ProductDetails from "../Components/ProductDetails/ProductDetails";
 import MyOrders from "../Components/MyOrders/MyOrders";
 import OrderStatus from "../Components/OrderStatus/OrderStatus";
 import OrderedItems from "../Page/Dashboard/OrderedItems/OrderedItems";
+import Invoice from "../Components/Invoice/Invoice";
 
 
 const router = createBrowserRouter([
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
             {
                 path: "orders",
                 element: <OrderedItems></OrderedItems>
+            },
+            {
+                path: "invoice/:id",
+                element: <Invoice></Invoice>
             }
         ]
     }

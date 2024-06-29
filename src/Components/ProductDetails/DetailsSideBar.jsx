@@ -30,7 +30,9 @@ const DetailsSideBar = ({ gender, id }) => {
                             randomProducts.map(product => <div key={product._id}>
                                 <div className='flex flex-col items-center'>
                                     <div className='w-full'>
-                                        <img className='w-screen rounded-lg h-56 lg:h-52' src={product.image} alt="Phote" />
+                                        <Link to={`/productDetails/${product._id}`}>
+                                            <img className='w-screen rounded-lg h-56 lg:h-52' src={product.image} alt="Phote" />
+                                        </Link>
                                     </div>
                                     <div className='flex flex-col justify-end w-full mt-3'>
                                         <Link to={`/productDetails/${product._id}`}>

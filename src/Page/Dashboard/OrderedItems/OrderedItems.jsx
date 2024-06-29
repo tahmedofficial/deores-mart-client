@@ -5,6 +5,8 @@ import UpdateStatusModal from "./UpdateStatusModal";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
+import OrderAddress from "./OrderAddress";
+import { Link } from "react-router-dom";
 
 const OrderedItems = () => {
 
@@ -12,6 +14,9 @@ const OrderedItems = () => {
     const axiosSecure = useAxiosSecure();
     const [showModal, setShowModal] = useState(false);
     const [ordersInfo, setOrdersInfo] = useState("");
+    const [address, setAddress] = useState({});
+    const [showAddress, setShowAddress] = useState(false);
+    const confirm = ["Confirm", "Shipped", "Delivered"];
 
     const { data: orders = [], refetch } = useQuery({
         queryKey: ["orders"],
@@ -24,6 +29,13 @@ const OrderedItems = () => {
     const handleStatus = (index) => {
         setOrdersInfo(orders[index]);
         setShowModal(true);
+    }
+
+    const handleAddress = (index) => {
+        const email = orders[index]?.orderInfo[0]?.email;
+        axiosSecure.get(`/address/${email}`)
+            .then(res => setAddress(res.data))
+        setShowAddress(true);
     }
 
     const handleDelete = (orderId) => {
@@ -53,7 +65,7 @@ const OrderedItems = () => {
             {
                 orders.length > 0 ?
                     <>
-                        <h1 className="text-center text-3xl font-medium">---Order Status---</h1>
+                        <h1 className="text-center text-3xl font-medium">---Order Items---</h1>
                         {
                             orders.map((order, index) => <div key={order._id}>
                                 <div className="bg-primary_bg_color mt-10 py-5 px-3 rounded-lg">
@@ -62,6 +74,13 @@ const OrderedItems = () => {
                                         <h3>Order Date: {order.date.split(",")[0]}</h3>
                                         <h3>Status: {order.status}</h3>
                                         <button onClick={() => handleStatus(index)} className="btn btn-sm bg-black text-white">Update Status</button>
+                                        <button onClick={() => handleAddress(index)} className="btn btn-sm bg-black text-white">Show Address</button>
+                                        {
+                                            confirm.includes(order.status) ?
+                                                <Link to={`/dashboard/invoice/${order._id}`}>
+                                                    <button className="btn btn-sm bg-black text-white">Invoice</button>
+                                                </Link> : undefined
+                                        }
                                         <button onClick={() => handleDelete(order.orderId)} className="btn btn-sm text-lg bg-black text-white"><MdDelete /></button>
                                     </div>
                                     <div>
@@ -105,6 +124,11 @@ const OrderedItems = () => {
             <div>
                 {
                     showModal ? <UpdateStatusModal onClose={() => setShowModal(false)} order={ordersInfo} refetch={refetch}></UpdateStatusModal> : undefined
+                }
+            </div>
+            <div>
+                {
+                    showAddress ? <OrderAddress onClose={() => setShowAddress(false)} address={address}></OrderAddress> : undefined
                 }
             </div>
         </div>

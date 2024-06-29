@@ -54,7 +54,9 @@ const SerriedSlider = ({ category, id }) => {
                             products.map(product => <SwiperSlide key={product._id}>
                                 <div className='flex flex-col items-center md:min-h-[450px] lg:min-h-[520px]'>
                                     <div>
-                                        <img className='w-screen h-56 md:h-auto rounded-lg' src={product.image} alt="image" />
+                                        <Link to={`/productDetails/${product._id}`}>
+                                            <img className='w-screen h-56 md:h-auto rounded-lg' src={product.image} alt="image" />
+                                        </Link>
                                     </div>
                                     <div className='md:flex-grow flex flex-col justify-end w-full mt-3'>
                                         <Link to={`/productDetails/${product._id}`}>
