@@ -65,7 +65,7 @@ const SerriedSlider = ({ category, id }) => {
                                     </div>
                                     <div className='flex flex-col items-center w-full pt-4 h-full'>
                                         <h1 className='font-semibold'>{product.title.length > 20 ? product.title.slice(0, 20) + "..." : product.title}</h1>
-                                        <h1 className='bg-rose-100 text-rose-700 font-medium px-8 py-1 rounded-lg text-center mt-2'>$ {product.price}</h1>
+                                        <h1 className='bg-rose-100 text-rose-700 font-medium px-8 py-1 rounded-lg text-center mt-2'>$ {product.price.toFixed(2)}</h1>
                                     </div>
                                 </div>
                             </SwiperSlide>)

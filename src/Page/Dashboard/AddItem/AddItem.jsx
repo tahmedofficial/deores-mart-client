@@ -27,29 +27,37 @@ const AddItem = () => {
         });
 
         if (result.data.success) {
-            const productInfo = {
-                publisherEmail: user?.email,
-                publishedDate: today,
-                title: data.title,
-                description: data.description,
-                gender: data.gender,
-                category: data.category,
-                sQuantity: parseInt(data.sQuantity),
-                mQuantity: parseInt(data.mQuantity),
-                lQuantity: parseInt(data.lQuantity),
-                xlQuantity: parseInt(data.xlQuantity),
-                quantity: parseInt(data.sQuantity) + parseInt(data.mQuantity) + parseInt(data.xlQuantity) + parseInt(data.xxlQuantity),
-                price: parseInt(data.price),
-                image: result?.data?.data?.display_url
-            }
-            const res = await axiosSecure.post("/products", productInfo);
-            if (res?.data?.insertedId) {
-                reset();
-                setPublishing(false);
-                successMessage("The product has been published");
-            }
-            else {
-                setPublishing(false);
+            const responce = await axiosSecure.get("/productCode/66825e55d2c22a6baf54ea38")
+            if (responce?.data?.productCode) {
+                const productInfo = {
+                    publisherEmail: user?.email,
+                    publishedDate: today,
+                    title: data.title,
+                    description: data.description,
+                    gender: data.gender,
+                    category: data.category,
+                    sQuantity: parseInt(data.sQuantity),
+                    mQuantity: parseInt(data.mQuantity),
+                    lQuantity: parseInt(data.lQuantity),
+                    xlQuantity: parseInt(data.xlQuantity),
+                    quantity: parseInt(data.sQuantity) + parseInt(data.mQuantity) + parseInt(data.xlQuantity) + parseInt(data.xxlQuantity),
+                    price: parseInt(data.price),
+                    image: result?.data?.data?.display_url,
+                    productCode: responce?.data?.productCode
+                }
+                const productCode = `DC-${parseInt(responce.data.productCode.split("-")[1]) + 1}`;
+                const codeRes = await axiosSecure.patch("/productCode/66825e55d2c22a6baf54ea38", { productCode })
+                if (codeRes?.data?.modifiedCount > 0) {
+                    const res = await axiosSecure.post("/products", productInfo);
+                    if (res?.data?.insertedId) {
+                        reset();
+                        setPublishing(false);
+                        successMessage("The product has been published");
+                    }
+                    else {
+                        setPublishing(false);
+                    }
+                }
             }
         }
         else {

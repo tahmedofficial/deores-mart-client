@@ -74,7 +74,7 @@ const MenuToggle = ({ isOpen }) => {
             <nav className="bg-black bg-opacity-80 absolute z-20 w-full md:w-80 md:rounded-r-lg h-full pl-3">
                 <ul style={ulStyle}>
                     <li style={liStyle}><NavLink to="/" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-white font-medium px-3 pb-2 border-white" : "font-medium"}>Home</NavLink></li>
-                    <li style={liStyle}><NavLink to="allProducts" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-white font-medium px-3 pb-2 border-white" : "font-medium"}>allProducts</NavLink></li>
+                    <li style={liStyle}><NavLink to="allProducts" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-white font-medium px-3 pb-2 border-white" : "font-medium"}>All Products</NavLink></li>
                     <li style={liStyle}><NavLink to="login" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-white font-medium px-3 pb-2 border-white" : "font-medium"}>Login</NavLink></li>
                     <li style={liStyle}><NavLink to="signUp" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-white font-medium px-3 pb-2 border-white" : "font-medium"}>Sign Up</NavLink></li>
                 </ul>

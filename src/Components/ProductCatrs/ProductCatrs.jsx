@@ -19,7 +19,7 @@ const ProductCatrs = ({ product }) => {
                 <Link to={`/productDetails/${_id}`}>
                     <div className='w-full'>
                         {
-                            image ? <img className='lg:max-h-[500px] lg:min-h-[495px] w-screen' src={image} alt="Phote" />
+                            image ? <img className='h-56 md:h-auto lg:max-h-[500px] lg:min-h-[495px] w-screen' src={image} alt="Phote" />
                                 : <span className="loading loading-ball loading-lg flex mx-auto mt-20"></span>
                         }
                     </div>
@@ -32,7 +32,7 @@ const ProductCatrs = ({ product }) => {
             </div>
             <div className='flex flex-col lg:flex-row items-center justify-between w-full mt-auto pt-4 mb-5 lg:mb-12'>
                 <h1 className='font-semibold'>{title.length > 20 ? title.slice(0, 20) + "..." : title}</h1>
-                <h1 className='bg-rose-100 text-rose-700 font-medium px-8 py-1 rounded-lg text-center mt-2 lg:mt-0'>$ {price}</h1>
+                <h1 className='bg-rose-100 text-rose-700 font-medium px-8 py-1 rounded-lg text-center mt-2 lg:mt-0'>$ {price.toFixed(2)}</h1>
             </div>
         </div>
     );

@@ -32,7 +32,7 @@ const ProductDetails = () => {
         }
     })
 
-    const { image, category, description, gender, sQuantity, mQuantity, lQuantity, xlQuantity, price, title } = product;
+    const { image, category, productCode, description, gender, sQuantity, mQuantity, lQuantity, xlQuantity, price, title } = product;
 
     useEffect(() => {
         setSize("");
@@ -112,9 +112,10 @@ const ProductDetails = () => {
                         <div className="flex flex-col gap-2">
                             <h1 className="text-xl font-medium">Title: {title}</h1>
                             <h3><span className="font-semibold">Category:</span> {category}</h3>
+                            <h3><span className="font-semibold">Product Code:</span> {productCode}</h3>
                             <h3><span className="font-semibold">For:</span> {gender}</h3>
                             <h3><span className="font-semibold">Description:</span> {description}</h3>
-                            <h3 className="mt-5 bg-black text-white w-2/5 text-center px-3 py-1 font-medium">$ {price}</h3>
+                            <h3 className="mt-5 bg-black text-white w-2/5 text-center px-3 py-1 font-medium">$ {price.toFixed(2)}</h3>
                             {
                                 size ? <div className="mt-2 bg-black text-white px-3 w-3/5 text-center py-1 font-medium">
                                     {

@@ -40,7 +40,7 @@ const DetailsSideBar = ({ gender, id }) => {
                                         </Link>
                                     </div>
                                     <div className='flex justify-center w-full pt-2'>
-                                        <h1 className='bg-rose-100 text-rose-700 font-medium px-8 py-1 rounded-lg text-center mt-2'>$ {product.price}</h1>
+                                        <h1 className='bg-rose-100 text-rose-700 font-medium px-8 py-1 rounded-lg text-center mt-2'>$ {product.price.toFixed(2)}</h1>
                                     </div>
                                 </div>
                             </div>)

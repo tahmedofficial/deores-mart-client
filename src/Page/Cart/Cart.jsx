@@ -70,7 +70,7 @@ const Cart = () => {
                                     const orderId = `DS-${parseInt(res.data.orderId.split("-")[1]) + 1}`;
                                     axiosSecure.patch(`/orderId/66787ced0a24731ddb7f0286`, { orderId })
                                         .then(response => {
-                                            if (response.data.matchedCount > 0) {
+                                            if (response.data.modifiedCount > 0) {
                                                 refetch();
                                                 navigate("/orderStatus");
                                                 successMessage("You have successfully purchased");

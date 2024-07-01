@@ -17,6 +17,7 @@ import MyOrders from "../Components/MyOrders/MyOrders";
 import OrderStatus from "../Components/OrderStatus/OrderStatus";
 import OrderedItems from "../Page/Dashboard/OrderedItems/OrderedItems";
 import Invoice from "../Components/Invoice/Invoice";
+import AllProductManage from "../Page/Dashboard/AllProductManage/AllProductManage";
 
 
 const router = createBrowserRouter([
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
             {
                 path: "addItem",
                 element: <AddItem></AddItem>
+            },
+            {
+                path: "allProductManage",
+                element: <AllProductManage></AllProductManage>
             },
             {
                 path: "orders",

@@ -100,6 +100,7 @@ const OrderStatus = () => {
                                                 </tbody>
                                             </table>
                                         </div>
+                                        {order.status === "Pending" ? <button className="btn btn-sm bg-red-500 text-white rounded-full px-5 flex mx-auto my-6">Cancel Order</button> : undefined}
                                     </div>
                                 </div>
                             </div>)
