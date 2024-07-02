@@ -3,9 +3,18 @@
 - Live Link: https://deores-mart.firebaseapp.com/
 - Server Repo: https://github.com/tahmedofficial/deores-mart-server
 
-## Running the Project
+## Admin Panel
+- email
+ ```bash
+ tanvirahmed5232@gmail.com
+```
+- pass
+ ```bash
+ tanvir
+```
 
-To run this project locally, follow these steps:
+
+## To run this project locally, follow these steps:
 
 1. Clone the repository | Copy and paste your terminal
  ```bash
