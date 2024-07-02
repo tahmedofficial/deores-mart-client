@@ -7,14 +7,17 @@
 
 To run this project locally, follow these steps:
 
-1. Clone the repository
+1. Clone the repository | Copy and paste your terminal
+ ```bash
+ git clone https://github.com/tahmedofficial/deores-mart-client.git
+```
 
-2. Copy and paste your terminal
+2. Install npm | Copy and paste your terminal
  ```bash
  npm install
 ```
 
-3. Copy and paste your terminal
+3. Run | Copy and paste your terminal
  ```bash
  npm run dev
 ```
