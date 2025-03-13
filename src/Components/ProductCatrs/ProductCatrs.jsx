@@ -25,13 +25,15 @@ const ProductCatrs = ({ product }) => {
                     </div>
                 </Link>
             </div>
-            <div className='flex-grow flex flex-col justify-end w-full mt-3'>
+            <div className='w-full mt-3'>
                 <Link to={`/productDetails/${_id}`}>
                     <button className='btn w-full rounded-none border-0 bg-black text-white'>View Details</button>
                 </Link>
             </div>
-            <div className='flex flex-col lg:flex-row items-center justify-between w-full mt-auto pt-4 mb-5 lg:mb-12'>
+            <div className='py-3'>
                 <h1 className='font-semibold'>{title.length > 20 ? title.slice(0, 20) + "..." : title}</h1>
+            </div>
+            <div className='w-full mt-auto lg:mb-12'>
                 <h1 className='bg-rose-100 text-rose-700 font-medium px-8 py-1 rounded-lg text-center mt-2 lg:mt-0'>$ {price.toFixed(2)}</h1>
             </div>
         </div>
