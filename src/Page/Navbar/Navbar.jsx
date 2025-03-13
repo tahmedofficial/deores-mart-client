@@ -36,11 +36,11 @@ const Navbar = () => {
 
     return (
         <div>
+            <MenuToggle isOpen={isOpen} setOpen={setOpen}></MenuToggle>
             <div className="navbar px-0">
                 <div className="navbar-start text-black">
-                    <div>
-                        <Hamburger toggled={isOpen} toggle={setOpen}></Hamburger>
-                        <MenuToggle isOpen={isOpen}></MenuToggle>
+                    <div className={`z-50 ${isOpen && "text-white"}`}>
+                        <Hamburger toggled={isOpen} toggle={setOpen} size={20}></Hamburger>
                     </div>
                 </div>
                 <Link to="/">
@@ -49,11 +49,11 @@ const Navbar = () => {
                 <div className="navbar-end gap-3 pr-2">
 
                     <div className="dropdown dropdown-end z-20">
-                        <div onClick={() => setShowCart(true)} tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-                            <div className="indicator">
+                        <div onClick={() => setShowCart(true)} tabIndex={0} role="button" className="btn relative btn-ghost btn-circle">
+                            <div>
                                 <BsCart3 className="h-5 w-5 text-black" />
-                                <span className="badge badge-sm indicator-item bg-black text-white">{carts.length}</span>
                             </div>
+                            <span className="absolute top-0 z-10 right-0 badge badge-sm bg-black text-white">{carts.length}</span>
                         </div>
                         {
                             showCart ? <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">

@@ -4,7 +4,7 @@ import { useAnimate, stagger } from "framer-motion";
 import { NavLink } from 'react-router-dom';
 
 const useMenuAnimation = (isOpen) => {
-    
+
     const [scope, animate] = useAnimate();
 
     useEffect(() => {
@@ -47,36 +47,29 @@ const useMenuAnimation = (isOpen) => {
     }, [isOpen, animate]);
 
     return scope;
+
 }
 
-const MenuToggle = ({ isOpen }) => {
+const MenuToggle = ({ isOpen, setOpen }) => {
 
     const scope = useMenuAnimation(isOpen);
 
-    const ulStyle = {
-        display: "flex",
-        flexDirection: "column",
-        gap: "10px",
-        padding: "15px"
-    }
-
-    const liStyle = {
-        color: "#ffffff",
-        transformOrigin: "-20px 50%",
-        fontSize: "16px",
-        willChange: "transform, opacity, filter",
-        listStyle: "none",
-        marginTop: "5px"
-    }
+    const navItems = [
+        { name: "Home", path: "/" },
+        { name: "All Products", path: "allProducts" },
+        { name: "Login", path: "login" },
+        { name: "Sign Up", path: "signUp" },
+    ];
 
     return (
         <div ref={scope}>
-            <nav className="bg-black bg-opacity-80 absolute z-20 w-full md:w-80 md:rounded-r-lg h-full pl-3">
-                <ul style={ulStyle}>
-                    <li style={liStyle}><NavLink to="/" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-white font-medium px-3 pb-2 border-white" : "font-medium"}>Home</NavLink></li>
-                    <li style={liStyle}><NavLink to="allProducts" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-white font-medium px-3 pb-2 border-white" : "font-medium"}>All Products</NavLink></li>
-                    <li style={liStyle}><NavLink to="login" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-white font-medium px-3 pb-2 border-white" : "font-medium"}>Login</NavLink></li>
-                    <li style={liStyle}><NavLink to="signUp" className={({ isActive }) => isActive ? "border-b-2 duration-300 text-white font-medium px-3 pb-2 border-white" : "font-medium"}>Sign Up</NavLink></li>
+            <nav className="bg-black absolute z-50 w-full md:w-80 md:rounded-r-lg h-full pt-20">
+                <ul className='flex flex-col gap-5'>
+                    {
+                        navItems.map(item => <li key={item.path} className="origin-left transform">
+                            <NavLink onClick={() => setOpen(false)} to={item.path} className={({ isActive }) => isActive ? "bg-white block text-black px-3 py-1" : "px-3 py-1 text-white"}>{item.name}</NavLink>
+                        </li>)
+                    }
                 </ul>
             </nav>
         </div>
@@ -86,5 +79,6 @@ const MenuToggle = ({ isOpen }) => {
 export default MenuToggle;
 
 MenuToggle.propTypes = {
-    isOpen: PropTypes.bool
+    isOpen: PropTypes.bool,
+    setOpen: PropTypes.func,
 }
