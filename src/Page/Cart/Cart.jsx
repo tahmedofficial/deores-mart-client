@@ -16,7 +16,9 @@ const Cart = () => {
     const [showModal, setShowModal] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState("1");
     const totalPrice = carts.reduce((sum, cart) => sum + cart.price, 0);
-    let today = new Date().toLocaleString();
+    const date = new Date().toDateString().split(" ");
+    const today = `${date[2]} ${date[1]} ${date[3]}`;
+    console.log(today);
 
     useEffect(() => {
         if (carts.length === 0) {

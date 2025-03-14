@@ -70,7 +70,7 @@ const MyOrders = () => {
                                 </div>
                             </div>)
                         }
-                    </> : <span className="loading loading-spinner loading-lg text-black flex mx-auto mt-20"></span>
+                    </> : <span className="text-center text-xl font-medium text-black block mt-16">You have no previous order !</span>
             }
             <Link to="/">
                 <motion.button className="btn px-10 bg-black hover:bg-black text-white rounded-none mt-14 md:mt-20 flex items-center" whileHover="hover">

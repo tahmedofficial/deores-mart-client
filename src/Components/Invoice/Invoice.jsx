@@ -13,7 +13,16 @@ const Invoice = () => {
     const [user, setUser] = useState({});
     const invoiceComponent = useRef();
     const date = new Date().toDateString().split(" ");
-    const deliveryDate = `${date[2]} ${date[1]} ${date[3]}`;
+    const orderDate = `${date[2]} ${date[1]} ${date[3]}`;
+
+
+    const { data: userInfo = {} } = useQuery({
+        queryKey: [user?.email, "user"],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/users/${user?.email}`);
+            return res.data;
+        }
+    })
 
     const { data: order = [] } = useQuery({
         queryKey: ["order"],
@@ -63,6 +72,7 @@ const Invoice = () => {
                         <div className="text-black space-y-1">
                             <h1 className="font-semibold">Billed To:</h1>
                             <h3>Name: {user.name}</h3>
+                            <h3>Number: {userInfo?.number}</h3>
                             <h3>Email: {user.email}</h3>
                             <div>
                                 <h3 className="inline">Address: {address.house},</h3>
@@ -73,7 +83,7 @@ const Invoice = () => {
                         </div>
                         <div className="text-black space-y-1">
                             <h3 className="font-semibold">Invoice No: {order.orderId}</h3>
-                            <h3>Date: {deliveryDate}</h3>
+                            <h3>Date: {orderDate}</h3>
                         </div>
                     </div>
                     <div className="divider"></div>
@@ -104,8 +114,8 @@ const Invoice = () => {
                                         <td>{item.title}</td>
                                         <td>{item.purchaseQuantity}</td>
                                         <td>{item.size}</td>
-                                        <td>$ {item.price.toFixed(2)}</td>
                                         <td>$ {(item.price / item.purchaseQuantity).toFixed(2)}</td>
+                                        <td>$ {item.price.toFixed(2)}</td>
                                     </tr>)
                                 }
                                 <tr>

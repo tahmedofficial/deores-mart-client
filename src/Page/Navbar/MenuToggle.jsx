@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAnimate, stagger } from "framer-motion";
 import { NavLink } from 'react-router-dom';
 
@@ -53,6 +53,7 @@ const useMenuAnimation = (isOpen) => {
 const MenuToggle = ({ isOpen, setOpen }) => {
 
     const scope = useMenuAnimation(isOpen);
+    const [isClosed, setClosed] = useState(false)
 
     const navItems = [
         { name: "Home", path: "/" },
@@ -61,9 +62,28 @@ const MenuToggle = ({ isOpen, setOpen }) => {
         { name: "Sign Up", path: "signUp" },
     ];
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setClosed(true);
+        }, 900);
+
+        if (isOpen) {
+            document.body.classList.add("overflow-hidden");
+        } else {
+            document.body.classList.remove("overflow-hidden");
+        }
+
+        return () => {
+            clearTimeout(timer);
+            document.body.classList.remove("overflow-hidden");
+        };
+
+    }, [isOpen]);
+
     return (
         <div ref={scope}>
-            <nav className="bg-black absolute z-50 w-full md:w-80 md:rounded-r-lg h-full pt-20">
+            <nav className={isClosed ? "bg-black absolute z-50 w-full md:w-80 md:rounded-r-lg h-full pt-10" : "hidden"}>
+                <h1 className='text-white text-center font-medium text-4xl py-10'>Deores</h1>
                 <ul className='flex flex-col gap-5'>
                     {
                         navItems.map(item => <li key={item.path} className="origin-left transform">

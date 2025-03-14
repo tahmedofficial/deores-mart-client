@@ -10,8 +10,8 @@ const ProductCatrs = ({ product }) => {
     const { _id, image, title, price } = product;
 
     return (
-        <div className='flex flex-col items-center h-full group'>
-            <Link to={`/productDetails/${_id}`}>
+        <Link to={`/productDetails/${_id}`}>
+            <div className='flex flex-col items-center h-full group'>
                 <div className='relative'>
                     {
                         wish ? <FaHeart onClick={() => setWish(!wish)} className='text-2xl text-rose-500 absolute top-5 right-5 opacity-0 group-hover:opacity-100 duration-500' />
@@ -33,8 +33,8 @@ const ProductCatrs = ({ product }) => {
                 <div className='w-full mt-auto lg:mb-12'>
                     <h1 className='bg-rose-100 text-rose-700 font-medium px-8 py-1 rounded-lg text-center mt-2 lg:mt-0'>$ {price.toFixed(2)}</h1>
                 </div>
-            </Link>
-        </div>
+            </div>
+        </Link>
     );
 };
 

@@ -119,7 +119,7 @@ const OrderedItems = () => {
                                 </div>
                             </div>)
                         }
-                    </> : <span className="loading loading-spinner loading-lg text-black flex mx-auto mt-20"></span>
+                    </> : <span className="text-center text-xl font-medium text-black block">No order at this moment !</span>
             }
             <div>
                 {

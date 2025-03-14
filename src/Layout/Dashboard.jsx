@@ -15,8 +15,8 @@ const Dashboard = () => {
     return (
         <div className="flex gap-3 px-2 font-montserrat">
             <ScrollToTop></ScrollToTop>
-            <div>
-                <Hamburger toggled={isOpen} toggle={setOpen} />
+            <div className="pt-5">
+                <Hamburger toggled={isOpen} toggle={setOpen} size={24} />
                 {isOpen ? <AdminDashboard></AdminDashboard> :
                     <div className="h-full">
                         <ul className="flex flex-col gap-3 pt-3 items-center bg-primary_card_color rounded-sm h-full min-h-screen">
