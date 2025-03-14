@@ -83,7 +83,9 @@ const MenuToggle = ({ isOpen, setOpen }) => {
     return (
         <div ref={scope}>
             <nav className={isClosed ? "bg-black absolute z-50 w-full md:w-80 md:rounded-r-lg h-full pt-10" : "hidden"}>
-                <h1 className='text-white text-center font-medium text-4xl py-10'>Deores</h1>
+                <ul>
+                    <li className='text-white text-center font-medium text-4xl py-10'>Deores</li>
+                </ul>
                 <ul className='flex flex-col gap-5'>
                     {
                         navItems.map(item => <li key={item.path} className="origin-left transform">

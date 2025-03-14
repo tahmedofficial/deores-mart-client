@@ -13,11 +13,13 @@ const AllProductManage = () => {
     const axiosSecure = useAxiosSecure();
     const [showModal, setShowModal] = useState(false);
     const [productIndex, setProductIndex] = useState(0);
+    const [isLoading, setLoading] = useState(true);
 
     const { data: products = [], refetch } = useQuery({
         queryKey: ["products"],
         queryFn: async () => {
             const res = await axiosSecure.get("/products");
+            setLoading(false);
             return res.data;
         }
     })
@@ -47,6 +49,10 @@ const AllProductManage = () => {
                     })
             }
         });
+    }
+
+    if (isLoading) {
+        return <span className="loading loading-spinner loading-lg text-black flex mx-auto mt-20"></span>
     }
 
     return (

@@ -17,11 +17,14 @@ const OrderedItems = () => {
     const [address, setAddress] = useState({});
     const [showAddress, setShowAddress] = useState(false);
     const confirm = ["Confirm", "Shipped", "Delivered"];
+    const [isLoading, setLoading] = useState(true);
+
 
     const { data: orders = [], refetch } = useQuery({
         queryKey: ["orders"],
         queryFn: async () => {
             const res = await axiosSecure.get("/orders");
+            setLoading(false);
             return res.data;
         }
     })
@@ -58,6 +61,10 @@ const OrderedItems = () => {
                     })
             }
         });
+    }
+
+    if (isLoading) {
+        return <span className="loading loading-spinner loading-lg text-black flex mx-auto mt-20"></span>
     }
 
     return (

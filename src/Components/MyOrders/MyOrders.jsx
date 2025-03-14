@@ -4,19 +4,26 @@ import useAuth from "../../Hooks/useAuth";
 import { Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const MyOrders = () => {
 
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const [isLoading, setLoading] = useState(true);
 
     const { data: orders = [] } = useQuery({
         queryKey: [user?.email, "orders"],
         queryFn: async () => {
             const res = await axiosSecure.get(`/orders/delivered/${user?.email}`);
+            setLoading(false);
             return res.data;
         }
     })
+
+    if (isLoading) {
+        return <span className="loading loading-spinner loading-lg text-black flex mx-auto mt-20"></span>
+    }
 
     return (
         <div className="md:w-5/6 mx-auto px-3">

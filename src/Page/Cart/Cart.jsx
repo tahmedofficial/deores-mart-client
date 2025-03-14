@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import AddressModal from "../../Components/Address/AddressModal";
 import { useNavigate } from "react-router-dom";
+import WaitMadal from "../../Components/WaitMadal/WaitMadal";
 
 const Cart = () => {
 
@@ -14,11 +15,11 @@ const Cart = () => {
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
+    const [isWaiting, setWaiting] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState("1");
     const totalPrice = carts.reduce((sum, cart) => sum + cart.price, 0);
     const date = new Date().toDateString().split(" ");
     const today = `${date[2]} ${date[1]} ${date[3]}`;
-    console.log(today);
 
     useEffect(() => {
         if (carts.length === 0) {
@@ -56,7 +57,7 @@ const Cart = () => {
 
         if (address) {
             if (parseInt(paymentMethod) === 1) {
-
+                setWaiting(true);
                 axiosSecure.get(`/orderId/66787ced0a24731ddb7f0286`)
                     .then(res => {
                         const orderData = {
@@ -75,6 +76,7 @@ const Cart = () => {
                                             if (response.data.modifiedCount > 0) {
                                                 refetch();
                                                 navigate("/orderStatus");
+                                                setWaiting(false);
                                                 successMessage("You have successfully purchased");
                                             }
                                         })
@@ -82,7 +84,9 @@ const Cart = () => {
                             })
                     })
             }
-            else { errorMessage("Up Comming") }
+            else {
+                errorMessage("Online payment is comming")
+            }
         }
         else { setShowModal(true) }
 
@@ -188,6 +192,9 @@ const Cart = () => {
             </div>
             <div>
                 {showModal ? <AddressModal refetch={reload} address={address} onClose={() => setShowModal(false)}></AddressModal> : undefined}
+            </div>
+            <div>
+                {isWaiting ? <WaitMadal massege="Please Wait"></WaitMadal> : undefined}
             </div>
         </div>
     );
