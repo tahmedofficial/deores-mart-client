@@ -8,10 +8,12 @@ const Main = () => {
 
     const location = useLocation();
     const isCartPage = location.pathname.includes("/cart");
+    const hideNav = location.pathname === "/";
+
     return (
         <main className="font-montserrat">
             <ScrollToTop></ScrollToTop>
-            {isCartPage ? undefined : <Navbar></Navbar>}
+            {isCartPage || hideNav ? undefined : <Navbar></Navbar>}
             <Outlet></Outlet>
             {isCartPage ? undefined : <Footer></Footer>}
             <ToastContainer />

@@ -10,7 +10,7 @@ import WaitMadal from "../../Components/WaitMadal/WaitMadal";
 
 const Cart = () => {
 
-    const [carts, refetch] = useCart();
+    const [carts, refetch, loded] = useCart();
     const { user, successMessage, errorMessage } = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
@@ -22,10 +22,10 @@ const Cart = () => {
     const today = `${date[2]} ${date[1]} ${date[3]}`;
 
     useEffect(() => {
-        if (carts.length === 0) {
+        if (carts.length === 0 && loded) {
             navigate("/allProducts");
         }
-    }, [carts, navigate])
+    }, [carts, loded, navigate])
 
     const handleDelete = (id) => {
         axiosSecure.delete(`/carts/${id}`)

@@ -82,7 +82,7 @@ const MenuToggle = ({ isOpen, setOpen }) => {
 
     return (
         <div ref={scope}>
-            <nav className={isClosed ? "bg-black absolute z-50 w-full md:w-80 md:rounded-r-lg h-full pt-10" : "hidden"}>
+            <nav className={isClosed ? "bg-black absolute z-50 w-full md:w-80 md:rounded-r-lg pt-10 h-screen" : "hidden"}>
                 <ul>
                     <li className='text-white text-center font-medium text-4xl py-10'>Deores</li>
                 </ul>
