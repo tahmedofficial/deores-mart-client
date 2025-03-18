@@ -4,22 +4,25 @@ import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+
+    const bannerCss = location.pathname === "/";
+
     return (
-        <footer className="bg-black py-24 mt-16">
+        <footer className={`bg-black py-24 ${bannerCss ? undefined : "mt-16"}`}>
             <div className="footer md:w-5/6 mx-auto px-5">
                 <div>
-                    <h1 className="font-semibold text-xl text-white">Services</h1>
-                    <h3 className="text-white">Trip Advisor</h3>
-                    <h3 className="text-white">Airbnb</h3>
-                    <h3 className="text-white">Booking</h3>
-                    <h3 className="text-white">Hotwire</h3>
+                    <h1 className="font-semibold text-xl text-white">Our Product</h1>
+                    <h3 className="text-white">{`Men's Collection`}</h3>
+                    <h3 className="text-white">{`Women's Collection`}</h3>
+                    <h3 className="text-white">New Arrival</h3>
+                    <h3 className="text-white">Accessories</h3>
                 </div>
                 <div>
                     <h1 className="font-semibold text-xl text-white">Company</h1>
                     <h3 className="text-white">About us</h3>
-                    <h3 className="text-white">Orbitz</h3>
-                    <h3 className="text-white">Jobs</h3>
-                    <h3 className="text-white">Priceline</h3>
+                    <h3 className="text-white">Book Appointment</h3>
+                    <h3 className="text-white">Apply for Jobs</h3>
+                    <h3 className="text-white">Story</h3>
                 </div>
                 <div>
                     <h1 className="font-semibold text-xl text-white">Address</h1>

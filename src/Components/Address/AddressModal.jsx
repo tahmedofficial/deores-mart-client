@@ -47,7 +47,7 @@ const AddressModal = ({ onClose, refetch, address }) => {
                     <form onSubmit={handleAddress} className="flex flex-col gap-3">
                         <div className="lg:flex gap-4">
                             <div>
-                                <h3 className="ml-2 mb-1">Houser<span className="text-red-500">*</span></h3>
+                                <h3 className="ml-2 mb-1">House Number<span className="text-red-500">*</span></h3>
                                 <input className="md:w-96 h-10 px-3 outline-none rounded-lg text-black" type="text" name="house" defaultValue={address.house} required />
                             </div>
                             <div className="mt-3 lg:mt-0">

@@ -11,9 +11,30 @@ import TextWriter from "../../Components/TextWriter/TextWriter";
 const Banner = () => {
 
     return (
-        <div className=''>
-            <div className='hidden md:block'>
-                <img src={womenClothing} alt="Banner" />
+        <div>
+            <div className='hidden md:block relative'>
+                <video width="100%" height="100%" autoPlay muted loop playsInline>
+                    <source src="/videos/banner-video.mp4" type="video/mp4" />
+                </video>
+
+                <div className='absolute top-0 w-full h-full bg-[#0000006e]'>
+                    <div className='absolute bottom-48 left-0 w-full px-10'>
+                        <div className='text-white text-6xl font-serif'>
+                            <TextWriter text="Your Satisfaction is Our Goal"></TextWriter>
+                        </div>
+                        <div className='text-white py-12 font-medium md:w-2/6 space-y-8'>
+                            <Link to="/allProducts">
+                                <h3 className='border-b pb-1' data-aos="fade-up" data-aos-duration="2000">All Collection</h3>
+                            </Link>
+                            <h3 className='border-b pb-1' data-aos="fade-up" data-aos-duration="2000">Shop for Men</h3>
+                            <h3 className='border-b pb-1' data-aos="fade-up" data-aos-duration="2000">Shop for Women</h3>
+                            <h3 className='border-b pb-1' data-aos="fade-up" data-aos-duration="2000">New Arrival</h3>
+                            <h3 className='border-b pb-1' data-aos="fade-up" data-aos-duration="2000">Accessories</h3>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
 
             <div className='md:hidden'>
@@ -22,6 +43,7 @@ const Banner = () => {
                         <img src={banner1} alt="Banner" />
                     </div>
                     <div className='absolute top-0 w-full h-full bg-[#0000006e]'>
+
                         <div className='text-white font-medium text-4xl pt-20 text-center'>
                             <TextWriter text="Your Satisfaction is Our Goal"></TextWriter>
                         </div>
@@ -44,14 +66,6 @@ const Banner = () => {
                                     Buy Now
                                 </button>
                             </Link>
-                        </div>
-                        <div className='text-white flex justify-around mt-20'>
-                            <div className='rotate-90'>
-                                <h3 className='font-medium text-3xl flex'>::::::</h3>
-                            </div>
-                            <div className='rotate-90'>
-                                <h3 className='font-medium text-3xl flex'>::::::</h3>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -81,11 +95,11 @@ const Banner = () => {
                         </div>
                     </div>
                     <div className='bg-red-600 col-span-3 text-white rounded-lg px-3 py-10' data-aos="fade-up" data-aos-duration="2000">
-                        <h3 className='text-5xl text-center'>Sale Up To</h3>
+                        <h3 className='text-6xl text-center font-medium'>Sale <span className='text-sm font-normal'>Up To</span></h3>
                         <div className='flex items-center font-medium justify-center'>
                             <h3 className='text-8xl'>50</h3>
                             <div className='flex flex-col text-2xl items-center'>
-                                <span>%</span>
+                                <span className='text-4xl'>%</span>
                                 <span>OF</span>
                             </div>
                         </div>
