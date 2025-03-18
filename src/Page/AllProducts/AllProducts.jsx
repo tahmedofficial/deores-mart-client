@@ -20,7 +20,7 @@ const AllProducts = () => {
             {
                 products.length > 0 ?
                     <>
-                        <h1 className="my-16 flex justify-center text-3xl text-black md:text-4xl font-medium">--- All Products ---</h1>
+                        <h1 className="my-16 flex justify-center text-3xl text-black md:text-4xl font-medium">--- All Collection ---</h1>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                             {
                                 products.map(product => <ProductCatrs key={product._id} product={product}></ProductCatrs>)

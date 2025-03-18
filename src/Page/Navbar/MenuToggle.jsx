@@ -57,9 +57,9 @@ const MenuToggle = ({ isOpen, setOpen }) => {
 
     const navItems = [
         { name: "Home", path: "/" },
-        { name: "All Products", path: "allProducts" },
-        { name: "Login", path: "login" },
-        { name: "Sign Up", path: "signUp" },
+        { name: "All Collection", path: "allProducts" },
+        { name: "Men's Collection", path: "C" },
+        { name: "Women's Collection", path: "B" },
     ];
 
     useEffect(() => {

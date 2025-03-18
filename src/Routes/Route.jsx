@@ -24,6 +24,7 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement: <h1 className="text-center mt-20 text-4xl bg-black text-white py-2">Please Go Back</h1>,
         children: [
             {
                 path: "/",
